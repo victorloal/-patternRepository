@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Catalogaciondelpatron</class>
+ <widget class="QMainWindow" name="Catalogaciondelpatron">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>884</width>
+    <height>549</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="Catalogaciondelpatron_2">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="10" column="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QPushButton" name="pb_modeloEtructuraDia">
+        <property name="text">
+         <string>Subir Modelo</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lb_modeloEstructuraDIA">
+        <property name="text">
+         <string>&lt;...&gt;.dia</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_modeloEstructuraSVG">
+        <property name="text">
+         <string>Subir Imagen</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lb_modeloEstructuraSVG">
+        <property name="text">
+         <string>&lt;...&gt;.svg</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="9" column="1">
+     <widget class="QLabel" name="lb_modeloAlcance">
+      <property name="text">
+       <string>Modelo de Alcance</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="lb_dominio">
+      <property name="text">
+       <string>Dominio Principal</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QToolButton" name="tb_infoPatronesRelacionados">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-help">
+        <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
+      </property>
+      <property name="popupMode">
+       <enum>QToolButton::DelayedPopup</enum>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonIconOnly</enum>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pb_modeloAlcanceDia">
+        <property name="text">
+         <string>Subir Modelo</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lb_modeloAlcanceDia">
+        <property name="text">
+         <string>&lt;...&gt;.dia</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_modeloEtructuraSVG">
+        <property name="text">
+         <string>Subir Imagen</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lb_modeloAlcanceSVG">
+        <property name="text">
+         <string>&lt;...&gt;.svg</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLineEdit" name="le_nombre">
+      <property name="placeholderText">
+       <string>Ingrese el nombre</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QToolButton" name="tb_infoModeloAlcance">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-help">
+        <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
+      </property>
+      <property name="popupMode">
+       <enum>QToolButton::DelayedPopup</enum>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonIconOnly</enum>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QToolButton" name="tb_infoModeloComportamiento">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-help">
+        <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
+      </property>
+      <property name="popupMode">
+       <enum>QToolButton::DelayedPopup</enum>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonIconOnly</enum>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QPushButton" name="pb_modeloComportamientoDia">
+        <property name="text">
+         <string>Subir Modelo</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lb_ModeloComportamientoDIA">
+        <property name="text">
+         <string>&lt;...&gt;.dia</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_modeloComportamientoSVG">
+        <property name="text">
+         <string>Subir Imagen</string>
+        </property>
+        <property name="icon">
+         <iconset theme="document-new">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>false</bool>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lb_ModeloComportamientoSVG">
+        <property name="text">
+         <string>&lt;...&gt;.svg</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="8" column="1">
+     <widget class="QLabel" name="lb_requisitosDominioRelacionados">
+      <property name="text">
+       <string>Requisitos de Dominio Relacionados</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QTextEdit" name="te_descripcion">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="placeholderText">
+       <string>Descripcion que abarque lo mas relevante del patron</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QLabel" name="lb_modeloEstructura">
+      <property name="text">
+       <string>Modelo de Estructura </string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLabel" name="lb_descripcion">
+      <property name="text">
+       <string>Descripción</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="lb_usosConocidos">
+      <property name="text">
+       <string>Usos Conocidos</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QPushButton" name="pb_usosConocidos">
+      <property name="text">
+       <string>Añadir usos conocidos del patron</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QPushButton" name="pb_patronesRealcionados">
+      <property name="text">
+       <string>Añadir patrones relacionados</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="lb_nombrePatron">
+      <property name="text">
+       <string>Nombre del Patron</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QLabel" name="lb_modeloComportamiento">
+      <property name="text">
+       <string>Modelo de Comportamiento</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QComboBox" name="cb_Dominios">
+        <item>
+         <property name="text">
+          <string>Dominio Principal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Dominio 1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Dominio 2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_nuevoDominio">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="list-add">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="8" column="2">
+     <widget class="QPushButton" name="pb_requisitosDominiosRelacionados">
+      <property name="text">
+       <string>Añadir requisitos de dominio</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="0">
+     <widget class="QToolButton" name="tb_infoModeloEstructura">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-help">
+        <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
+      </property>
+      <property name="popupMode">
+       <enum>QToolButton::DelayedPopup</enum>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonIconOnly</enum>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QToolButton" name="tb_infoRequisitosDominio">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-help">
+        <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
+      </property>
+      <property name="popupMode">
+       <enum>QToolButton::DelayedPopup</enum>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonIconOnly</enum>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLabel" name="lb_patronesRelacionados">
+      <property name="text">
+       <string>Patrones Relacionados</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QToolButton" name="tb_infoUsosConocidos">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset theme="system-help">
+        <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
+      </property>
+      <property name="popupMode">
+       <enum>QToolButton::DelayedPopup</enum>
+      </property>
+      <property name="toolButtonStyle">
+       <enum>Qt::ToolButtonIconOnly</enum>
+      </property>
+      <property name="autoRaise">
+       <bool>true</bool>
+      </property>
+      <property name="arrowType">
+       <enum>Qt::NoArrow</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

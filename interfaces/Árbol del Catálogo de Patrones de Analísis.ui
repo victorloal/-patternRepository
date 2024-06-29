@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CatalogoPatron</class>
+ <widget class="QMainWindow" name="CatalogoPatron">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>624</width>
+    <height>549</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Árbol del Catálogo de Patrones de Analísis</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTreeWidget" name="tw_catalogo">
+      <column>
+       <property name="text">
+        <string>Catalogo</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="le_nombrePatron"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="lb_nombrePatron">
+        <property name="text">
+         <string>Nombre del Patron</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lb_dominiosAsociados">
+        <property name="text">
+         <string>Dominios Asociados</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lb_descripcion">
+        <property name="text">
+         <string>Descripción</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lb_usosConocidos">
+        <property name="text">
+         <string>Usos conocidos </string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="lb_patronesRelacionados">
+        <property name="text">
+         <string>Patrones Relacionados</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="lb_requisitosDominioAsociados">
+        <property name="text">
+         <string>Requisitos de Dominio Asociados</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="lb_modeloAlcance">
+        <property name="text">
+         <string>Modelo de Alcance</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="lb_modeloEstructura">
+        <property name="text">
+         <string>Modelo de Estructura</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="lb_modeloComportamiento">
+        <property name="text">
+         <string>Modelo de Comportamiento</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="lb_template">
+        <property name="text">
+         <string>Template</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTextEdit" name="te_dominiosAsociados"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QTextEdit" name="te_descripcion"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QTextEdit" name="te_usosConocidos"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QTextEdit" name="te_patronesRelacionados"/>
+      </item>
+      <item row="5" column="1">
+       <widget class="QTextEdit" name="te_requisitosDominioAsociados"/>
+      </item>
+      <item row="6" column="1">
+       <widget class="QPushButton" name="pb_vistaAlcance">
+        <property name="text">
+         <string>Vista Previa</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QPushButton" name="pb_vistaEstructura">
+        <property name="text">
+         <string>Vista Previa</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QPushButton" name="pb_vistaComportamiento">
+        <property name="text">
+         <string>Vista Previa</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QPushButton" name="pb_vistaTemplate">
+        <property name="text">
+         <string>Vista Previa</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
