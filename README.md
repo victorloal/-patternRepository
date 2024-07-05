@@ -10,7 +10,6 @@
 
 import json
 import os
-import shutil
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from interfacesPy.NuevoDomino import Ui_NuevoDominio as nd
@@ -256,6 +255,8 @@ class Ui_Catalogaciondelpatron(object):
         self.cargarDominios()
 
         # Eventos
+        Catalogaciondelpatron.setWindowTitle("Catalogación del patrón")
+        self.cb_Dominios.activated.connect(self.cargarDominios)
         self.pb_cancelar.clicked.connect(Catalogaciondelpatron.close)
         self.pb_guardar.clicked.connect(self.guardar)
         self.pb_nuevoDominio.clicked.connect(self.nuevoDominio)
@@ -285,8 +286,6 @@ class Ui_Catalogaciondelpatron(object):
             data = data["Dominios"]
             for dominio in data:
                 self.cb_Dominios.addItem(dominio)
-
-                    
         
     def guardar(self):
         try:
@@ -298,11 +297,6 @@ class Ui_Catalogaciondelpatron(object):
                 #añadir el dominio seleccionado de primero
                 data["Dominios"].insert(0, self.cb_Dominios.currentText())
                 data["Descripcion"] = self.te_descripcion.toPlainText()
-                # Guardar los datos en el archivo
-                file.seek(0)
-                json.dump(data, file, indent=4)
-                
-                
                 self.crearPatron()
                 self.guardarModelos()
                 self.guardarUsos()
@@ -324,22 +318,23 @@ class Ui_Catalogaciondelpatron(object):
             os.mkdir(f"{self.file}/{self.le_nombre.text()}/diagramas.dia")
             os.mkdir(f"{self.file}/{self.le_nombre.text()}/diagramas.svg")
             #copia el data.json en la carpeta del patron
-            print(f"{self.file}/{self.le_nombre.text()}/data.json")
-            shutil.copy("data.json", f"{self.file}/{self.le_nombre.text()}/data.json")
-            
+            with open ("data.json", "r") as file:
+                data = json.load(file)
+            with (f"{self.file}/{self.le_nombre.text()}/data.json", 'w') as file:
+                json.dump(data, file)
         except Exception as e:
             print(f"Error al crear el archivo: {e}")
             
             
     def guardarModelos(self):
         try:
-            shutil.copy(f"{self.lb_modeloComportamientoDIA.text()}", f"{self.file}/{self.le_nombre.text()}/diagramas.dia/modeloComportamiento.dia")
-            shutil.copy(f"{self.lb_modeloAlcanceDia.text()}", f"{self.file}/{self.le_nombre.text()}/diagramas.dia/modeloAlcance.dia")
-            shutil.copy(f"{self.lb_modeloEstructuraDIA.text()}", f"{self.file}/{self.le_nombre.text()}/diagramas.dia/modeloEstructura.dia")
+            os.system(f"cp {self.lb_modeloComportamientoDIA.text()} {self.file}/{self.le_nombre.text()}/diagramas.dia/modeloComportamiento.dia")
+            os.system(f"cp {self.lb_modeloAlcanceDia.text()} {self.file}/{self.le_nombre.text()}/diagramas.dia/modeloAlcance.dia")
+            os.system(f"cp {self.lb_modeloEstructuraDIA.text()} {self.file}/{self.le_nombre.text()}/diagramas.dia/modeloEstructura.dia")
             
-            shutil.copy(f"{self.lb_modeloComportamientoSVG.text()}", f"{self.file}/{self.le_nombre.text()}/diagramas.svg/modeloComportamiento.svg")
-            shutil.copy(f"{self.lb_modeloAlcanceSVG.text()}", f"{self.file}/{self.le_nombre.text()}/diagramas.svg/modeloAlcance.svg")
-            shutil.copy(f"{self.lb_modeloEstructuraSVG.text()}", f"{self.file}/{self.le_nombre.text()}/diagramas.svg/modeloEstructura.svg")
+            os.system(f"cp {self.lb_modeloComportamientoSVG.text()} {self.file}/{self.le_nombre.text()}/diagramas.svg/modeloComportamiento.svg")
+            os.system(f"cp {self.lb_modeloAlcanceSVG.text()} {self.file}/{self.le_nombre.text()}/diagramas.svg/modeloAlcance.svg")
+            os.system(f"cp {self.lb_modeloEstructuraSVG.text()} {self.file}/{self.le_nombre.text()}/diagramas.svg/modeloEstructura.svg")
         except Exception as e:
             print(f"Error al guardar los modelos: {e}")
             
@@ -367,30 +362,24 @@ class Ui_Catalogaciondelpatron(object):
         self.ui_arbol_patrones = nd()
         self.ui_arbol_patrones.setupUi(self.NuevoDominio)
         self.NuevoDominio.show()
-        def on_close_event(event):
-            self.cargarDominios()
-            event.accept()
-        self.NuevoDominio.closeEvent = on_close_event
+            
         
     def cargarModeloComportamiento(self):
         file_name = self.cargarArchivo()
         if file_name:
-            #comparar la extencion del archivo
-            if ".dia" in file_name:
-                self.lb_modeloComportamientoDIA.setText(file_name)
-            elif ".svg" in file_name:
+            if "dia" in file_name:
+                self.lb_modeloComportamientoDIA.setText(file_name) 
+            elif "svg" in file_name:
                 self.lb_modeloComportamientoSVG.setText(file_name)
             else:
                 print("Archivo no soportado")
-
     
     def cargarModeloAlcance(self):
         file_name = self.cargarArchivo()
         if file_name:
-            #comparar la extencion del archivo solo se aceptan .dia y .svg
-            if ".dia" in file_name:
+            if "dia" in file_name:
                 self.lb_modeloAlcanceDia.setText(file_name)
-            elif ".svg" in file_name:
+            elif "svg" in file_name:
                 self.lb_modeloAlcanceSVG.setText(file_name)
             else:
                 print("Archivo no soportado")
@@ -398,9 +387,9 @@ class Ui_Catalogaciondelpatron(object):
     def cargarModeloEstructuras(self):
         file_name = self.cargarArchivo()
         if file_name:
-            if ".dia" in file_name:
+            if "dia" in file_name:
                 self.lb_modeloEstructuraDIA.setText(file_name)
-            elif ".svg" in file_name:
+            elif "svg" in file_name:
                 self.lb_modeloEstructuraSVG.setText(file_name)
             else:
                 print("Archivo no soportado")

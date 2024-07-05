@@ -9,15 +9,16 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from CatalogacionPatrones import Ui_Catalogaciondelpatron as cp
-from ArbolPatrones import Ui_CatalogoPatron as ap
+from interfacesPy.CatalogacionPatrones import Ui_Catalogaciondelpatron as cp
+from interfacesPy.ArbolPatrones import Ui_CatalogoPatron as ap
 
 
 class Ui_BusquedaPatron(object):
     def setupUi(self, BusquedaPatron):
-        BusquedaPatron.setObjectName("BusquedaPatron")
-        BusquedaPatron.resize(414, 391)
-        self.centralwidget = QtWidgets.QWidget(BusquedaPatron)
+        self. BusquedaPatron = BusquedaPatron
+        self.BusquedaPatron.setObjectName("BusquedaPatron")
+        self.BusquedaPatron.resize(414, 391)
+        self.centralwidget = QtWidgets.QWidget(self.BusquedaPatron)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -92,14 +93,14 @@ class Ui_BusquedaPatron(object):
         self.pb_crearPatron.setObjectName("pb_crearPatron")
         self.horizontalLayout_3.addWidget(self.pb_crearPatron)
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
-        BusquedaPatron.setCentralWidget(self.centralwidget)
+        self.BusquedaPatron.setCentralWidget(self.centralwidget)
         
         self.pb_buscar.clicked.connect(self.buscar)
         self.pb_verPatron.clicked.connect(self.verPatron)
         self.pb_crearPatron.clicked.connect(self.crearPatron)
 
-        self.retranslateUi(BusquedaPatron)
-        QtCore.QMetaObject.connectSlotsByName(BusquedaPatron)
+        self.retranslateUi(self.BusquedaPatron)
+        QtCore.QMetaObject.connectSlotsByName(self.BusquedaPatron)
 
     def retranslateUi(self, BusquedaPatron):
         _translate = QtCore.QCoreApplication.translate
@@ -121,27 +122,45 @@ class Ui_BusquedaPatron(object):
             self.nueva_ventana = QtWidgets.QMainWindow()
             self.ui_arbol_patrones = cp()
             self.ui_arbol_patrones.setupUi(self.nueva_ventana)
-            BusquedaPatron.close()
+            self.crearArchivos()
+            self.BusquedaPatron.close()
             self.nueva_ventana.show()
             
             # Define a method to handle the close event and show the main window
             def on_close_event(event):
-                BusquedaPatron.show()
+                self.BusquedaPatron.show()
                 event.accept()
 
             # Connect the close event of the new window to the handler
             self.nueva_ventana.closeEvent = on_close_event
             
+    def crearArchivos(self):
+        try:
+        # Crear y abrir el archivo en modo escritura
+            with open("data.json", 'w') as file:
+                file.write('{\n')
+                file.write('    \"Nombre\":\"\", \n')
+                file.write('    \"Dominios\":[], \n')
+                file.write('    \"Descripcion\":\"\",\n')
+                file.write('    \"Usos\":[],\n')
+                file.write('    \"PatronesRelacionados\":[],\n')
+                file.write('    \"RequisitosRelacionados\":[]\n')
+                file.write('}')
+                
+            
+        except Exception as e:
+            print(f"Error al crear el archivo: {e}")
+            
     def verPatron(self):
             self.nueva_ventana = QtWidgets.QMainWindow()
             self.ui_arbol_patrones = ap()
             self.ui_arbol_patrones.setupUi(self.nueva_ventana)
-            BusquedaPatron.close()
+            self.BusquedaPatron.close()
             self.nueva_ventana.show()
             
             # Define a method to handle the close event and show the main window
             def on_close_event(event):
-                BusquedaPatron.show()
+                self.BusquedaPatron.show()
                 event.accept()
 
             # Connect the close event of the new window to the handler
