@@ -293,20 +293,26 @@ class Ui_Catalogaciondelpatron(object):
             with open("data.json", "r+") as file:
                 # Cargar el contenido del archivo JSON
                 data = json.load(file)
+                
                 # Modificar los datos
                 data["Nombre"] = self.le_nombre.text()
-                #añadir el dominio seleccionado de primero
                 data["Dominios"].insert(0, self.cb_Dominios.currentText())
                 data["Descripcion"] = self.te_descripcion.toPlainText()
-                # Guardar los datos en el archivo
+                
+                # Volver al inicio del archivo para sobrescribirlo
                 file.seek(0)
+                
+                # Escribir los datos modificados en el archivo
                 json.dump(data, file, indent=4)
+                
+                # Truncar el archivo para asegurarse de que no queden datos antiguos
+                file.truncate()
                 
                 
                 self.crearPatron()
                 self.guardarModelos()
                 self.guardarUsos()
-                
+            
                 # Volver al inicio del archivo para sobreescribir el contenido
 
         except FileNotFoundError:

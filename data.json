@@ -1,20 +1,10 @@
 {
-    "Nombre": "ejemplo2345",
+    "Nombre": "adsfsdghn",
     "Dominios": [
-        "Dominio Ejemplo 2",
-        "ejemplo",
-        "ejemplo",
-        "Dominio Ejemplo 2"
+        "Dominio Ejemplo 1"
     ],
-    "Descripcion": "asfsdfgsdf",
-    "Usos": [
-        "Ejemplo 1",
-        "Ejemplo 2"
-    ],
+    "Descripcion": "adsfgh",
+    "Usos": [],
     "PatronesRelacionados": [],
-    "RequisitosRelacionados": [
-        "Requisito3",
-        "ejemplo",
-        "Requisito2"
-    ]
+    "RequisitosRelacionados": []
 }
