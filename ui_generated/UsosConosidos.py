@@ -88,7 +88,7 @@ class Ui_UsosConocidos(object):
         QtCore.QMetaObject.connectSlotsByName(UsosConocidos)
         
     def optenerRuta(self):
-        with open("conf.json", "r") as file:
+        with open("config.json", "r") as file:
             data = json.load(file)
             self.file = data["repositorio"]
             

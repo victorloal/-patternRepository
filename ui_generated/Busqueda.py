@@ -11,8 +11,8 @@
 import json
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
-from interfacesPy.CatalogacionPatrones import Ui_Catalogaciondelpatron as cp
-from interfacesPy.ArbolPatrones import Ui_CatalogoPatron as ap
+from ui_generated.CatalogacionPatrones import Ui_Catalogaciondelpatron as cp
+from ui_generated.ArbolPatrones import Ui_CatalogoPatron as ap
 
 
 class Ui_BusquedaPatron(object):
@@ -134,10 +134,10 @@ class Ui_BusquedaPatron(object):
         results = []
 
         # Filtrar los datos
-        with open("conf.json", 'r') as file:
+        with open("config.json", 'r') as file:
             data = file.read()
             data = json.loads(data)
-            path_repo = data['repositorio']
+            path_repo = data['repo_path']
             nombres = os.listdir(path_repo)
             carpetas = [nombre for nombre in nombres if os.path.isdir(os.path.join(path_repo, nombre)) and not nombre.startswith('.')]
 
@@ -176,13 +176,13 @@ class Ui_BusquedaPatron(object):
     def listaPatrones(self):
         # Implementar la lista de patrones
         # listar los patrones que esten en el Repositorio de Patrones
-        with open("conf.json", 'r') as file:
+        with open("config.json", 'r') as file:
             # limpiar la tabla
             self.tw_listaPatrones.setRowCount(0)
             
             data = file.read()
             data = json.loads(data)
-            path_repo = data['repositorio']
+            path_repo = data['repo_path']
             #listar las carpetas dentro del path_repo
             # Obtener una lista de nombres de archivos y carpetas en la ruta especificada
             nombres = os.listdir(path_repo)

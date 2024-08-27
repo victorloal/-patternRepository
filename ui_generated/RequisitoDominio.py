@@ -10,7 +10,7 @@
 
 import json
 from PyQt5 import QtCore, QtGui, QtWidgets
-from interfacesPy.NuevoDomino import Ui_NuevoDominio as nd
+from ui_generated.NuevoDomino import Ui_NuevoDominio as nd
 
 
 class Ui_RequisitosdeDominio(object):
@@ -140,7 +140,7 @@ class Ui_RequisitosdeDominio(object):
         pass
     
     def optenerRuta(self):
-        with open("conf.json", "r") as file:
+        with open("config.json", "r") as file:
             data = json.load(file)
             self.file = data["repositorio"]
    

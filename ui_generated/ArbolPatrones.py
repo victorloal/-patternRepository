@@ -11,7 +11,7 @@
 import json
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets
-from interfacesPy.VistaPrevia import Ui_VistaPrevia as vp
+from ui_generated.VistaPrevia import Ui_VistaPrevia as vp
 
 
 class Ui_CatalogoPatron(object):
@@ -109,10 +109,10 @@ class Ui_CatalogoPatron(object):
         self.te_patronesRelacionados.clear()
         self.te_requisitosDominioAsociados.clear()
         
-        # Leer la ruta de conf.json
-        with open('conf.json') as file:
+        # Leer la ruta de config.json
+        with open('config.json') as file:
             data = json.load(file)
-            ruta = data['repositorio']
+            ruta = data['repo_path']
 
         # Obtener la ruta del archivo seleccionado
         ruta_archivo = os.path.join(ruta,self.tw_catalogo.currentItem().text(0))
@@ -171,10 +171,10 @@ class Ui_CatalogoPatron(object):
         self.nueva_ventana.closeEvent = on_close_event
 
     def listarArbol(self,nombre=None):
-        # Leer la ruta de conf.json
-        with open('conf.json') as file:
+        # Leer la ruta de config.json
+        with open('config.json') as file:
             data = json.load(file)
-            ruta = data['repositorio']
+            ruta = data['repo_path']
         
         # Limpiar el QTreeWidget
         self.tw_catalogo.clear()

@@ -10,7 +10,7 @@
 
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets, QtSvg
-from interfacesPy.instanciacion import Instanciacion
+from ui_generated.instanciacion import Instanciacion
 
 
 
@@ -91,31 +91,29 @@ class Ui_VistaPrevia(object):
         self.pb_instaciarPatron.clicked.connect(self.on_instanciar_patron)
         
     def on_instanciar_patron(self):
-        #ver en que label esta visible
         if self.lb_template.isVisible():
-            
-            svg_path = self.lb_template
+            svg_path = self.svg_paths[self.lb_template]
             print("Template")
         elif self.lb_vistaAlcance.isVisible():
-            print("Alcance")
             svg_path = self.svg_paths[self.lb_vistaAlcance]
+            print("Alcance")
         elif self.lb_vistaEstructura.isVisible():
             svg_path = self.svg_paths[self.lb_vistaEstructura]
             print("Estructura")
         elif self.lb_vistaComportamiento.isVisible():
             svg_path = self.svg_paths[self.lb_vistaComportamiento]
             print("Comportamiento")
-            
-        
-        
+        else:
+            print("No visible label found")
+            return
+
         if not os.path.exists(svg_path):
             print("Error: SVG file does not exist at the specified path.")
             return
 
         svg_content = self.load_svg_from_file(svg_path)
 
-        # Ensure that 'self' is a QMainWindow instance when passed as the parent
-        dialog = Instanciacion(svg_content, self.VistaPrevia)  # Pass the main window instance here
+        dialog = Instanciacion(svg_content, self.VistaPrevia)  # Ensure VistaPrevia is the correct parent
         if dialog.exec_() == QtWidgets.QDialog.Accepted:
             modified_svg_content = dialog.modified_svg_content
             print("Modified SVG Content:")

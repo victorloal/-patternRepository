@@ -13,9 +13,9 @@ import os
 import shutil
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-from interfacesPy.NuevoDomino import Ui_NuevoDominio as nd
-from interfacesPy.UsosConosidos import Ui_UsosConocidos as uc
-from interfacesPy.RequisitoDominio import Ui_RequisitosdeDominio as rd
+from ui_generated.NuevoDomino import Ui_NuevoDominio as nd
+from ui_generated.UsosConosidos import Ui_UsosConocidos as uc
+from ui_generated.RequisitoDominio import Ui_RequisitosdeDominio as rd
 
 
 class Ui_Catalogaciondelpatron(object):
@@ -273,7 +273,7 @@ class Ui_Catalogaciondelpatron(object):
         QtCore.QMetaObject.connectSlotsByName(Catalogaciondelpatron)
     
     def optenerRuta(self):
-        with open("conf.json", "r") as file:
+        with open("config.json", "r") as file:
             data = json.load(file)
             self.file = data["repositorio"]
             
