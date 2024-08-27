@@ -16,10 +16,11 @@ from interfacesPy.ArbolPatrones import Ui_CatalogoPatron as ap
 
 
 class Ui_BusquedaPatron(object):
+    
     def setupUi(self, BusquedaPatron):
-        self. BusquedaPatron = BusquedaPatron
+        self.BusquedaPatron = BusquedaPatron
+        self.BusquedaPatron.showMaximized()
         self.BusquedaPatron.setObjectName("BusquedaPatron")
-        self.BusquedaPatron.resize(414, 391)
         self.centralwidget = QtWidgets.QWidget(self.BusquedaPatron)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -98,6 +99,7 @@ class Ui_BusquedaPatron(object):
         self.BusquedaPatron.setCentralWidget(self.centralwidget)
         
         self.listaPatrones()
+        
         self.pb_buscar.clicked.connect(self.buscar)
         self.pb_verPatron.clicked.connect(self.verPatron)
         self.pb_crearPatron.clicked.connect(self.crearPatron)
@@ -120,10 +122,64 @@ class Ui_BusquedaPatron(object):
         item.setText(_translate("BusquedaPatron", "Descripción"))
         self.pb_verPatron.setText(_translate("BusquedaPatron", "Ver Patron"))
         self.pb_crearPatron.setText(_translate("BusquedaPatron", "Crear Patron"))
+    
+    def buscar(self):
+        # Obtener el texto de búsqueda y los criterios seleccionados
+        search_text = self.le_datos.text().lower()
+        search_by_name = self.cb_nombre.isChecked()
+        search_by_roles = self.cb_roles.isChecked()
+        search_by_dominio = self.cb_dominio.isChecked()
+
+        # Lista para almacenar los resultados
+        results = []
+
+        # Filtrar los datos
+        with open("conf.json", 'r') as file:
+            data = file.read()
+            data = json.loads(data)
+            path_repo = data['repositorio']
+            nombres = os.listdir(path_repo)
+            carpetas = [nombre for nombre in nombres if os.path.isdir(os.path.join(path_repo, nombre)) and not nombre.startswith('.')]
+
+            for carpeta in carpetas:
+                with open(f"{path_repo}/{carpeta}/data.json", 'r') as file:
+                    pattern_data = file.read()
+                    pattern_data = json.loads(pattern_data)
+
+                    # Determinar si el patrón cumple con los criterios de búsqueda
+                    match = False
+                    if search_by_name and search_text in pattern_data.get('Nombre', '').lower():
+                        match = True
+                    if search_by_roles and any(search_text in role.lower() for role in pattern_data.get('Roles', [])):
+                        match = True
+                    if search_by_dominio and search_text in pattern_data.get('Dominios', []):
+                        match = True
+
+                    # Almacenar los resultados con un indicador de coincidencia
+                    results.append({
+                        'Nombre': pattern_data['Nombre'],
+                        'Descripcion': pattern_data['Descripcion'],
+                        'Match': match
+                    })
+
+        # Ordenar los resultados: los que coinciden primero, luego el resto
+        results.sort(key=lambda x: not x['Match'])  # False (no coincide) se considera mayor que True (coincide)
+
+        # Limpiar la tabla antes de agregar los resultados filtrados
+        self.tw_listaPatrones.setRowCount(0)
+
+        # Agregar los resultados a la tabla
+        for result in results:
+            self.tw_listaPatrones.insertRow(self.tw_listaPatrones.rowCount())
+            self.tw_listaPatrones.setItem(self.tw_listaPatrones.rowCount()-1, 0, QtWidgets.QTableWidgetItem(result['Nombre']))
+            self.tw_listaPatrones.setItem(self.tw_listaPatrones.rowCount()-1, 1, QtWidgets.QTableWidgetItem(result['Descripcion']))
     def listaPatrones(self):
         # Implementar la lista de patrones
         # listar los patrones que esten en el Repositorio de Patrones
         with open("conf.json", 'r') as file:
+            # limpiar la tabla
+            self.tw_listaPatrones.setRowCount(0)
+            
             data = file.read()
             data = json.loads(data)
             path_repo = data['repositorio']
@@ -148,26 +204,24 @@ class Ui_BusquedaPatron(object):
         pass
     
     
-    def buscar(self):
-        # Implementar la busqueda de patron seleccionado
-        
-        pass
+
 
     def crearPatron(self):
-            self.nueva_ventana = QtWidgets.QMainWindow()
-            self.ui_arbol_patrones = cp()
-            self.ui_arbol_patrones.setupUi(self.nueva_ventana)
-            self.crearArchivos()
-            self.BusquedaPatron.close()
-            self.nueva_ventana.show()
-            
-            # Define a method to handle the close event and show the main window
-            def on_close_event(event):
-                self.BusquedaPatron.show()
-                event.accept()
+        self.nueva_ventana = QtWidgets.QMainWindow()
+        self.ui_arbol_patrones = cp()
+        self.ui_arbol_patrones.setupUi(self.nueva_ventana)
+        self.crearArchivos()
+        self.BusquedaPatron.close()
+        self.nueva_ventana.show()
+        
+        # Define a method to handle the close event and show the main window
+        def on_close_event(event):
+            self.BusquedaPatron.show()
+            self.listaPatrones()
+            event.accept()
 
-            # Connect the close event of the new window to the handler
-            self.nueva_ventana.closeEvent = on_close_event
+        # Connect the close event of the new window to the handler
+        self.nueva_ventana.closeEvent = on_close_event
             
     def crearArchivos(self):
         try:
@@ -187,23 +241,36 @@ class Ui_BusquedaPatron(object):
             print(f"Error al crear el archivo: {e}")
             
     def verPatron(self):
+            # tiene que tener seleccionado un patron de la lista
+            if self.tw_listaPatrones.currentRow() == -1:
+                # muestra un Dialogo con el error
+                
+                msg = QtWidgets.QMessageBox()
+                msg.setIcon(QtWidgets.QMessageBox.Information)
+                msg.setText("Seleccione un patron")
+                msg.setWindowTitle("Error")
+                msg.exec_()
+                
+                
+            
+            # OPTEBER EL NOMBRE DEL PATRON SELECCIONADO
+            nombre = self.tw_listaPatrones.item(self.tw_listaPatrones.currentRow(), 0).text()
             self.nueva_ventana = QtWidgets.QMainWindow()
             self.ui_arbol_patrones = ap()
-            self.ui_arbol_patrones.setupUi(self.nueva_ventana)
+            self.ui_arbol_patrones.setupUi(self.nueva_ventana, nombre)
             self.BusquedaPatron.close()
             self.nueva_ventana.show()
             
             # Define a method to handle the close event and show the main window
             def on_close_event(event):
                 self.BusquedaPatron.show()
+                self.listaPatrones()
                 event.accept()
 
             # Connect the close event of the new window to the handler
             self.nueva_ventana.closeEvent = on_close_event
             
-            
-    def buscar(self):
-        pass
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -173,7 +173,9 @@ class Ui_RequisitosdeDominio(object):
                 # Cargar el contenido del archivo JSON
                 data = json.load(file)
                 # A ñadir el dominio a la lista de dominios asociados con repetición
-                data["Dominios"].append(self.cb_dominios.currentText())
+                # ver si el dominio ya está en la lista
+                if self.cb_dominios.currentText() not in data["Dominios"]:
+                    data["Dominios"].append(self.cb_dominios.currentText())
                 data["RequisitosRelacionados"].append(self.lw_dominios.currentItem().text())
                 # Volver al inicio del archivo para sobreescribir el contenido
                 file.seek(0)

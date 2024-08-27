@@ -114,11 +114,17 @@ class Ui_UsosConocidos(object):
         usos = []
         for i in range(self.lw_usos.count()):
             usos.append(self.lw_usos.item(i).text())
-        with open("data.json", "r") as file:
+        with open("data.json", "r+") as file:
             data = json.load(file)
             data["Usos"] = usos
-        with open("data.json", "w") as file:
-            json.dump(data, file)
+            # Volver al inicio del archivo para sobrescribirlo
+            file.seek(0)
+            
+            # Escribir los datos modificados en el archivo
+            json.dump(data, file, indent=4)
+            
+            # Truncar el archivo para asegurarse de que no queden datos antiguos
+            file.truncate()
         self.lw_usos.clear()
         self.cb_usos.clear()
         self.listarUsos()

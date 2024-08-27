@@ -296,7 +296,12 @@ class Ui_Catalogaciondelpatron(object):
                 
                 # Modificar los datos
                 data["Nombre"] = self.le_nombre.text()
-                data["Dominios"].insert(0, self.cb_Dominios.currentText())
+                #Revisar si el dominio ya existe
+                if self.cb_Dominios.currentText() not in data["Dominios"]:
+                    data["Dominios"].insert(0, self.cb_Dominios.currentText())
+                else:
+                    data["Dominios"].remove(self.cb_Dominios.currentText())
+                    data["Dominios"].insert(0, self.cb_Dominios.currentText())
                 data["Descripcion"] = self.te_descripcion.toPlainText()
                 
                 # Volver al inicio del archivo para sobrescribirlo

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
+    <width>614</width>
     <height>391</height>
    </rect>
   </property>
@@ -173,16 +173,16 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QPushButton" name="pb_verPatron">
+       <widget class="QPushButton" name="pb_crearPatron">
         <property name="text">
-         <string>Ver Patron</string>
+         <string>Cancelar</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pb_crearPatron">
+       <widget class="QPushButton" name="pb_verPatron">
         <property name="text">
-         <string>Crear Patron</string>
+         <string>Aceptar</string>
         </property>
        </widget>
       </item>

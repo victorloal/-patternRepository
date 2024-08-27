@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="63cm" height="31cm" viewBox="-148 -87 1247 616">
+  <defs/>
+  <g id="Fondo">
+    <path style="fill: #b552c1; fill-opacity: 0.521569; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" d="M 160.002 -85.75 C -8.84803,-85.75 -146.998,52.4 -146.998,221.25 C -146.998,390.1 -8.84803,528.25 160.002,528.25 C 328.852,528.25 467.002,390.1 467.002,221.25 C 467.002,52.4 328.852,-85.75 160.002,-85.75z"/>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="-73.398" y="149.15" width="155.15" height="38" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="4.177" y="172.031">
+        <tspan xml:space="preserve" x="4.177" y="172.031">Rol 1</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="251.602" y="149.15" width="155.15" height="38" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="329.177" y="172.031">
+        <tspan xml:space="preserve" x="329.177" y="172.031">Rol 2</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="81.602" y="292.15" width="155.15" height="38" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="159.177" y="315.031">
+        <tspan xml:space="preserve" x="159.177" y="315.031">Rol 32134567</tspan>
+      </text>
+    </g>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="81.752" y1="168.15" x2="250.618" y2="168.15"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="4.177" y1="187.15" x2="159.177" y2="292.15"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="329.177" y1="187.15" x2="159.177" y2="292.15"/>
+    <text font-size="12.4178" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:serif;font-style:normal;font-weight:normal" x="166.004" y="-2.20107">
+      <tspan xml:space="preserve" x="166.004" y="-2.20107">COLABORACION 1</tspan>
+    </text>
+    <g>
+      <ellipse style="fill: #c87ece; fill-opacity: 0.376471; stroke-opacity: 1; stroke-width: 2; stroke-dasharray: 20; stroke: #000000" cx="859.657" cy="-37.7644" rx="113.975" ry="37.9917"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="859.657" y="-33.8834">
+        <tspan xml:space="preserve" x="859.657" y="-33.8834">COLABORACION 1</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="617.128" y="75.5476" width="155.15" height="38" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="694.703" y="98.4287">
+        <tspan xml:space="preserve" x="694.703" y="98.4287">Rol 1</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="942.128" y="75.5476" width="155.15" height="38" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1019.7" y="98.4287">
+        <tspan xml:space="preserve" x="1019.7" y="98.4287">Rol 2</tspan>
+      </text>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="772.128" y="218.548" width="155.15" height="38" rx="0" ry="0"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="849.703" y="241.429">
+        <tspan xml:space="preserve" x="849.703" y="241.429">Rol 32134567</tspan>
+      </text>
+    </g>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="772.278" y1="94.5476" x2="941.144" y2="94.5476"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="694.703" y1="113.548" x2="849.703" y2="218.548"/>
+    <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x1="1019.7" y1="113.548" x2="849.703" y2="218.548"/>
+  </g>
+</svg>
