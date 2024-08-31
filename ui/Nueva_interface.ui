@@ -45,14 +45,14 @@
       <item row="0" column="2">
        <layout class="QFormLayout" name="formLayout">
         <item row="0" column="0">
-         <widget class="QLabel" name="lb_nombrePatron">
+         <widget class="QLabel" name="lb_name_2">
           <property name="text">
            <string>Nombre del Patron</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QLabel" name="lb_Nombre">
+         <widget class="QLabel" name="lb_name">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
@@ -74,14 +74,14 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="lb_dominiosAsociados">
+         <widget class="QLabel" name="lb_associatedDomains">
           <property name="text">
            <string>Dominios Asociados</string>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QListWidget" name="lw_dominos">
+         <widget class="QListWidget" name="lw_associatedDomains">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -91,14 +91,14 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QLabel" name="lb_descripcion">
+         <widget class="QLabel" name="lb_description">
           <property name="text">
            <string>Descripción</string>
           </property>
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QListWidget" name="lw_descripcion">
+         <widget class="QListWidget" name="lw_description">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -108,14 +108,14 @@
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QLabel" name="lb_usosConocidos">
+         <widget class="QLabel" name="lb_knownUses">
           <property name="text">
            <string>Usos conocidos </string>
           </property>
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QListWidget" name="lw_usos">
+         <widget class="QListWidget" name="lw_knownUses">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -131,14 +131,14 @@
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QLabel" name="lb_patronesRelacionados">
+         <widget class="QLabel" name="lb_relatedPatterns">
           <property name="text">
            <string>Patrones Relacionados</string>
           </property>
          </widget>
         </item>
         <item row="5" column="1">
-         <widget class="QListWidget" name="lw_patrones">
+         <widget class="QListWidget" name="lw_relatedPatterns">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -148,7 +148,7 @@
          </widget>
         </item>
         <item row="6" column="0">
-         <widget class="QLabel" name="lb_requisitosDominioAsociados">
+         <widget class="QLabel" name="lb_associatedRequirements">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -161,7 +161,7 @@
          </widget>
         </item>
         <item row="6" column="1">
-         <widget class="QListWidget" name="lw_requisitos">
+         <widget class="QListWidget" name="lw_associatedRequirements">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -178,7 +178,7 @@
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="lb_pattern">
           <property name="text">
            <string>Patrones</string>
           </property>
@@ -193,7 +193,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="le_search">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -203,7 +203,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_buscar_3">
+           <widget class="QPushButton" name="pb_search">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -225,7 +225,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pb_buscar_2">
+         <widget class="QPushButton" name="pb_advancedSearch">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -245,7 +245,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QListWidget" name="listWidget">
+         <widget class="QListWidget" name="lw_pattern">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -272,11 +272,11 @@
          </widget>
         </item>
         <item>
-         <widget class="QTabWidget" name="tabWidget">
+         <widget class="QTabWidget" name="tw_preview">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="template_2">
            <attribute name="title">
             <string>Template</string>
            </attribute>
@@ -297,7 +297,7 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
-                 <widget class="QLabel" name="lb_template_2">
+                 <widget class="QLabel" name="lb_template">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                     <horstretch>0</horstretch>
@@ -315,7 +315,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_2">
+          <widget class="QWidget" name="scope">
            <attribute name="title">
             <string>Vista de Alcance</string>
            </attribute>
@@ -336,7 +336,7 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_7">
                 <item>
-                 <widget class="QLabel" name="lb_vistaAlcance">
+                 <widget class="QLabel" name="lb_scope">
                   <property name="text">
                    <string/>
                   </property>
@@ -348,7 +348,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_3">
+          <widget class="QWidget" name="structure">
            <attribute name="title">
             <string>Vista de Estructura</string>
            </attribute>
@@ -375,7 +375,7 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
-                 <widget class="QLabel" name="lb_vistaEstructura">
+                 <widget class="QLabel" name="lb_structure">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                     <horstretch>0</horstretch>
@@ -393,7 +393,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_4">
+          <widget class="QWidget" name="behavior">
            <attribute name="title">
             <string>Vista de Comportamiento</string>
            </attribute>
@@ -414,7 +414,7 @@
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_8">
                 <item>
-                 <widget class="QLabel" name="lb_vistaComportamiento">
+                 <widget class="QLabel" name="lb_behavior">
                   <property name="text">
                    <string/>
                   </property>
@@ -431,14 +431,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="pb_vistaComportamiento">
+           <widget class="QPushButton" name="pb_fullScreen">
             <property name="text">
              <string>Pantalla Completa</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pb_vistaComportamiento_2">
+           <widget class="QPushButton" name="pb_instantiate">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -471,20 +471,19 @@
     <property name="title">
      <string>Ayuda</string>
     </property>
-    <addaction name="actionInformacion_del_programa"/>
-    <addaction name="actionComo_crear_nuevo_Patron"/>
-    <addaction name="actionDonde_encontrar_los_patrones"/>
-    <addaction name="actionComo_colaborar_cone_le_proyecto"/>
+    <addaction name="help_app"/>
+    <addaction name="help_pattern"/>
+    <addaction name="help_ropository"/>
+    <addaction name="help_contribute"/>
    </widget>
    <widget class="QMenu" name="menuCrear">
     <property name="title">
      <string>Nuevo</string>
     </property>
-    <addaction name="actionPatron"/>
+    <addaction name="new_pattern"/>
     <addaction name="separator"/>
-    <addaction name="actionDominio"/>
-    <addaction name="actionCaso_de_uso"/>
-    <addaction name="actionRequisitos_de_diominio"/>
+    <addaction name="new_domains"/>
+    <addaction name="new_"/>
    </widget>
    <widget class="QMenu" name="menuEditar">
     <property name="title">
@@ -513,42 +512,42 @@
    <addaction name="menuEditar"/>
    <addaction name="menuConfiguracion"/>
   </widget>
-  <action name="actionInformacion_del_programa">
+  <action name="help_app">
    <property name="text">
     <string>Informacion del programa</string>
    </property>
   </action>
-  <action name="actionComo_crear_nuevo_Patron">
+  <action name="help_pattern">
    <property name="text">
     <string>Como crear nuevo Patron</string>
    </property>
   </action>
-  <action name="actionDonde_encontrar_los_patrones">
+  <action name="help_ropository">
    <property name="text">
     <string>Donde encontrar los patrones</string>
    </property>
   </action>
-  <action name="actionComo_colaborar_cone_le_proyecto">
+  <action name="help_contribute">
    <property name="text">
     <string>Como colaborar cone le proyecto</string>
    </property>
   </action>
-  <action name="actionPatron">
+  <action name="new_pattern">
    <property name="text">
     <string>Patron</string>
    </property>
   </action>
-  <action name="actionDominio">
+  <action name="new_domains">
    <property name="text">
     <string>Dominio</string>
    </property>
   </action>
   <action name="actionCaso_de_uso">
    <property name="text">
-    <string>Uso de dominio</string>
+    <string>Uso </string>
    </property>
   </action>
-  <action name="actionRequisitos_de_diominio">
+  <action name="new_">
    <property name="text">
     <string>Requisitos de diominio</string>
    </property>
@@ -585,22 +584,22 @@
   </action>
  </widget>
  <tabstops>
-  <tabstop>pb_vistaComportamiento_2</tabstop>
-  <tabstop>lw_usos</tabstop>
-  <tabstop>lw_patrones</tabstop>
-  <tabstop>lw_requisitos</tabstop>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>pb_buscar_3</tabstop>
-  <tabstop>pb_buscar_2</tabstop>
-  <tabstop>listWidget</tabstop>
-  <tabstop>tabWidget</tabstop>
+  <tabstop>pb_instantiate</tabstop>
+  <tabstop>lw_knownUses</tabstop>
+  <tabstop>lw_relatedPatterns</tabstop>
+  <tabstop>lw_associatedRequirements</tabstop>
+  <tabstop>le_search</tabstop>
+  <tabstop>pb_search</tabstop>
+  <tabstop>pb_advancedSearch</tabstop>
+  <tabstop>lw_pattern</tabstop>
+  <tabstop>tw_preview</tabstop>
   <tabstop>scrollArea_2</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>scrollArea_4</tabstop>
-  <tabstop>pb_vistaComportamiento</tabstop>
-  <tabstop>lw_dominos</tabstop>
-  <tabstop>lw_descripcion</tabstop>
+  <tabstop>pb_fullScreen</tabstop>
+  <tabstop>lw_associatedDomains</tabstop>
+  <tabstop>lw_description</tabstop>
  </tabstops>
  <resources/>
  <connections/>

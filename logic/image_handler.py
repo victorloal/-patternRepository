@@ -24,6 +24,9 @@ class ImageHandler:
         svg_path = os.path.join(self.base_path, f"diagramas.svg/{image_type}.svg")
         return self._get_pixmap_from_svg(svg_path)
 
+    def get_path_images(self, image_type):
+        return os.path.join(self.base_path, f"diagramas.svg/{image_type}.svg")
+    
     def _get_pixmap_from_svg(self, svg_path):
         """
         Renders an SVG image to a QPixmap object with the SVG's original size.
@@ -32,14 +35,19 @@ class ImageHandler:
             svg_path (str): The path to the SVG file.
 
         Returns:
-            QtGui.QPixmap: The QPixmap object containing the rendered image.
+            QtGui.QPixmap: The QPixmap object containing the rendered image, or a null QPixmap if there's an error.
         """
+        # Check if the SVG file exists
+        if not os.path.exists(svg_path):
+            # print(f"Error: SVG file '{svg_path}' does not exist.")
+            return None  # Return an empty QPixmap
+
         # Create an SVG renderer
         svg_renderer = QtSvg.QSvgRenderer(svg_path)
 
         if not svg_renderer.isValid():
-            print(f"Error: SVG file '{svg_path}' is invalid or could not be loaded.")
-            return QtGui.QPixmap()  # Return an empty QPixmap
+            # print(f"Error: SVG file '{svg_path}' is invalid or could not be loaded.")
+            return None  # Return an empty QPixmap
 
         # Get the size of the SVG
         size = svg_renderer.defaultSize()  # Get the original size of the SVG

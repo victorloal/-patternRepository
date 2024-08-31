@@ -283,7 +283,7 @@ class Ui_Catalogaciondelpatron(object):
         with open(f"{self.file}/Dominios.json") as file:
             data = file.read()
             data = json.loads(data)
-            data = data["Dominios"]
+            data = data["Domains"]
             for dominio in data:
                 self.cb_Dominios.addItem(dominio)
         
@@ -295,8 +295,8 @@ class Ui_Catalogaciondelpatron(object):
                 # Modificar los datos
                 data["Nombre"] = self.le_nombre.text()
                 #añadir el dominio seleccionado de primero
-                data["Dominios"].insert(0, self.cb_Dominios.currentText())
-                data["Descripcion"] = self.te_descripcion.toPlainText()
+                data["Domains"].insert(0, self.cb_Dominios.currentText())
+                data["Description"] = self.te_descripcion.toPlainText()
                 self.crearPatron()
                 self.guardarModelos()
                 self.guardarUsos()
@@ -343,17 +343,17 @@ class Ui_Catalogaciondelpatron(object):
         usos = []
         with open("data.json", "r") as file:
             data = json.load(file)
-            usos = data["Usos"]
+            usos = data["Uses"]
         with open(f"{self.file}/UsosConocidos.json", "r") as file:
             data = json.load(file)
             bandera = False
             for uso in usos:
-                for key in data["Usos"]:
+                for key in data["Uses"]:
                     if uso == key:
                         bandera = True
-                        data["Usos"][key].append(self.le_nombre.text())
+                        data["Uses"][key].append(self.le_nombre.text())
                 if not bandera:
-                    data["Usos"][uso] = [self.le_nombre.text()]
+                    data["Uses"][uso] = [self.le_nombre.text()]
         with open(f"{self.file}/UsosConocidos.json", "w") as file:
             json.dump(data, file)
     

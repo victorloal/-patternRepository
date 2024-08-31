@@ -1,8 +1,8 @@
 {
-    "Nombre":"", 
-    "Dominios":[], 
-    "Descripcion":"",
-    "Usos":[],
-    "PatronesRelacionados":[],
-    "RequisitosRelacionados":[]
+    "Name":"", 
+    "Domains":[], 
+    "Description":"",
+    "Uses":[],
+    "RelatedPatterns":[],
+    "RelatedRequirements":[]
 }

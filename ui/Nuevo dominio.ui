@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>NuevoDominio</class>
- <widget class="QDialog" name="NuevoDominio">
+ <class>NewDomain</class>
+ <widget class="QDialog" name="NewDomain">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="le_nombreDominio"/>
+      <widget class="QLineEdit" name="le_nameDomain"/>
      </item>
     </layout>
    </item>
@@ -41,7 +41,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QComboBox" name="cb_requisitos">
+      <widget class="QComboBox" name="cb_requirements">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -66,7 +66,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pb_adicionar">
+      <widget class="QPushButton" name="pb_add">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -85,10 +85,10 @@
     </layout>
    </item>
    <item>
-    <widget class="QListWidget" name="lw_requisitos"/>
+    <widget class="QListWidget" name="lw_requirements"/>
    </item>
    <item>
-    <widget class="QPushButton" name="pb_eliminar">
+    <widget class="QPushButton" name="pb_deleteRequirements">
      <property name="text">
       <string>Eliminar Requisito</string>
      </property>

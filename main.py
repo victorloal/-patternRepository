@@ -1,11 +1,19 @@
 import sys
 from PyQt5 import QtWidgets
-from ui_generated.Busqueda import Ui_BusquedaPatron
+from logic.UI.home import Home
 
 if __name__ == "__main__":
+    import sys
     app = QtWidgets.QApplication(sys.argv)
-    BusquedaPatron = QtWidgets.QMainWindow()
-    ui = Ui_BusquedaPatron()
-    ui.setupUi(BusquedaPatron)
-    BusquedaPatron.show()
+    main_window = Home()
+    main_window.show()
     sys.exit(app.exec_())
+
+
+    
+    
+    
+    
+    
+    
+      
