@@ -291,8 +291,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>536</width>
-                 <height>329</height>
+                 <width>98</width>
+                 <height>35</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -363,8 +363,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>536</width>
-                 <height>329</height>
+                 <width>98</width>
+                 <height>35</height>
                 </rect>
                </property>
                <property name="sizePolicy">
@@ -408,8 +408,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>536</width>
-                 <height>329</height>
+                 <width>98</width>
+                 <height>35</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -483,16 +483,15 @@
     <addaction name="new_pattern"/>
     <addaction name="separator"/>
     <addaction name="new_domains"/>
-    <addaction name="new_"/>
+    <addaction name="new_Requirements"/>
    </widget>
    <widget class="QMenu" name="menuEditar">
     <property name="title">
      <string>Editar</string>
     </property>
-    <addaction name="actionPatron_2"/>
-    <addaction name="actionDominio_2"/>
-    <addaction name="actionUsos_conocidos"/>
-    <addaction name="actionPatrones_relacionados"/>
+    <addaction name="edit_pattern"/>
+    <addaction name="edit_domain"/>
+    <addaction name="edit_requirementsDomain"/>
    </widget>
    <widget class="QMenu" name="menuConfiguracion">
     <property name="title">
@@ -502,8 +501,8 @@
      <property name="title">
       <string>Idioma</string>
      </property>
-     <addaction name="actionEspa_ol"/>
-     <addaction name="actionIngles"/>
+     <addaction name="laguage_spanish"/>
+     <addaction name="laguage_english"/>
     </widget>
     <addaction name="menuIdioma"/>
    </widget>
@@ -547,39 +546,44 @@
     <string>Uso </string>
    </property>
   </action>
-  <action name="new_">
+  <action name="new_Requirements">
    <property name="text">
     <string>Requisitos de diominio</string>
    </property>
   </action>
-  <action name="actionPatron_2">
+  <action name="edit_pattern">
    <property name="text">
     <string>Patron</string>
    </property>
   </action>
-  <action name="actionDominio_2">
+  <action name="edit_domain">
    <property name="text">
     <string>Dominio</string>
    </property>
   </action>
-  <action name="actionUsos_conocidos">
+  <action name="edit_knoeUses">
    <property name="text">
     <string>Usos conocidos</string>
    </property>
   </action>
-  <action name="actionPatrones_relacionados">
+  <action name="edit_RelatedPatterns">
    <property name="text">
     <string>Patrones relacionados</string>
    </property>
   </action>
-  <action name="actionEspa_ol">
+  <action name="laguage_spanish">
    <property name="text">
     <string>Español</string>
    </property>
   </action>
-  <action name="actionIngles">
+  <action name="laguage_english">
    <property name="text">
     <string>Ingles</string>
+   </property>
+  </action>
+  <action name="edit_requirementsDomain">
+   <property name="text">
+    <string>Requisitos de Dominio</string>
    </property>
   </action>
  </widget>

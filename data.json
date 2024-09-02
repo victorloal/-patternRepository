@@ -1,6 +1,6 @@
 {
     "Name":"", 
-    "Domains":[], 
+    "Domains":{}, 
     "Description":"",
     "Uses":[],
     "RelatedPatterns":[],

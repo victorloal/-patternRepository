@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from logic.UI.newDomain import NewDomain
 from logic.pattern_repository import PatternRepository
 from ui_generated.ui_dialogNewPAttern import Ui_NewPattern
 from ui_generated.ui_knowUses import Ui_KnowUses
@@ -7,18 +8,25 @@ from ui_generated.ui_newDomain import Ui_NewDomain
 from ui_generated.ui_associatedRequirements import Ui_AssociatedRequirements
 
 class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, edit= False):
         super().__init__(parent)
-        self.showNormal()
-        self.exec_()
         self.setupUi(self)
-        self.patterRepository = PatternRepository()
+        self.showNormal()
+        self.patternRepository = PatternRepository()
         self.messageManager = MessageBoxManager()
         self.uses = []
         self.domains = {}
         self.requirements = []
         self.init_ui()
-    
+        
+        
+    def editPattern(self, data = {}, images = {}):
+        self.le_name.setText(data["Name"])
+        self.cb_Domain.setCurrentText(data["Domains"][0])
+        self.uses = data["Uses"]
+        self.domains = data["Domains"]
+        self.requirements = data["Requirements"]
+        
     def init_ui(self):
         # Conectar señales y slots
         self.listDomains()
@@ -35,11 +43,11 @@ class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
         self.pb_behaviorDia.clicked.connect(lambda: self.uploadModel(self.lb_behaviorDia,".dia"))
         self.pb_behaviorSvg.clicked.connect(lambda: self.uploadModel(self.lb_behaviorSvg,".svg"))
         self.pb_templateDia.clicked.connect(lambda: self.uploadModel(self.lb_templateDia,".dia"))
-        self.pb_templateSvg.clicked.connect(lambda: self.uploadModel(self.lb_behaviorSvg,".svg"))
+        self.pb_templateSvg.clicked.connect(lambda: self.uploadModel(self.lb_templateSvg,".svg"))
         
     def listDomains(self):
         self.cb_Domain.clear()
-        domains = self.patterRepository.get_domains()
+        domains = self.patternRepository.get_domains()
         domain_keys = list(domains["Domains"].keys())
 
         # Agregar solo si no existe
@@ -101,12 +109,8 @@ class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
             
     def openNewDomainDialog(self):
         try:
-            dialog = QtWidgets.QDialog()
-            ui = Ui_NewDomain()
-            ui.setupUi(dialog)
-            ui.retranslateUi(dialog)
-            dialog.show()
-            dialog.exec_()  # Correctly call exec_() on QDialog instance
+            dialog = NewDomain() # Correctly call exec_() on QDialog instance
+            dialog.exec_()
         except Exception as e:
             print(f"Error al abrir el diálogo: {e}")
 
@@ -116,18 +120,14 @@ class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
         if self.verify():
             data = {}
             data["Name"] = self.le_name.text().lower()
-            data["Domains"] = []
-            data["Domains"].append(self.cb_Domain.currentText().lower())
-            self.domains["1"] = self.cb_Domain.currentText().lower()
+            data["Domains"] = {}
+            data["Domains"]["key"]=(self.cb_Domain.currentText().lower())
+            data["Domains"]["value"]=(self.domains)
             data["Description"] = self.te_description.toPlainText().lower()
             data["RelatedPatterns"] = self.realatedPatterns()
             data["Uses"] = self.uses
             data["Requirements"] = self.requirements
             #eliminar los duplicados   
-            self.domains = list(dict.fromkeys(self.domains.values()))
-            self.domains.remove(self.cb_Domain.currentText().lower())
-            for i in range(len(self.domains)):
-                data["Domains"].append(self.domains[i].lower())
             
             image_path = {}
             
@@ -140,13 +140,13 @@ class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
             image_path["structureModelSVG"] = self.lb_structurSvg.text()
             image_path["templateSVG"] = self.lb_templateSvg.text()
             
-            self.patterRepository.new_pattern(data, image_path)
+            self.patternRepository.new_pattern(data, image_path)
             
             #madar a guardar los archivos
     def realatedPatterns(self):
         #obtener los nombres de los patrones relacionados
         result = []
-        domains = self.patterRepository.get_domains()
+        domains = self.patternRepository.get_domains()
         for domain in domains["DomainsWithPatterns"].keys():
             if  domain in self.domains.values():
                 for pattern in domains["DomainsWithPatterns"][domain]:
@@ -154,7 +154,7 @@ class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
                         print(pattern)
                         result.append(pattern)
                     
-        uses = self.patterRepository.get_knowUses()
+        uses = self.patternRepository.get_knowUses()
         for use in uses["Uses"]:
             if use in self.uses:
                 for pattern in uses["Uses"][use]:

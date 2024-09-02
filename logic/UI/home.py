@@ -1,4 +1,6 @@
 from PyQt5 import QtWidgets
+from logic.UI.editRequirement import NewRequirement
+from logic.UI.newDomain import NewDomain
 from logic.UI.newPattern import NewPattern
 from logic.pattern_repository import PatternRepository
 from ui_generated.ui_fullScreen import Ui_instantiateWindow
@@ -11,7 +13,7 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.showMaximized()
-        self.patterRepository = PatternRepository()
+        self.patternRepository = PatternRepository()
         self.init_ui()
 
     def init_ui(self):
@@ -22,12 +24,62 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pb_fullScreen.clicked.connect(self.fullScreen)
         self.pb_instantiate.clicked.connect(self.instantiatePattern)
         self.new_pattern.triggered.connect(self.newPattern)
-
+        self.new_domains.triggered.connect(self.newDomain)
+        self.new_Requirements.triggered.connect(self.newRequirement)
+        self.edit_domain.triggered.connect(self.editDomain)
+        self.edit_pattern.triggered.connect(self.editPattern)
+        self.edit_requirementsDomain.triggered.connect(self.editRequirement)
+        self.help_app.triggered.connect(self.helpApp)
+        self.help_contribute.triggered.connect(self.helpContribute)
+        self.help_pattern.triggered.connect(self.helpPattern)
+        self.help_ropository.triggered.connect(self.helpRepository)
         # Inicializar la lista de patrones
         self.listPatterns()
         
+    
+    
+    def helpRepository(self):
+        pass
+    
+    def helpPattern(self):
+        pass
+    
+    def helpContribute(self):
+        pass
+    
+    def helpApp(self):
+        pass
+    
+    
+    def editPattern(self):
+        
+        pattern_name = self.lw_pattern.currentItem().text()
+        data, images = self.patternRepository.get_pattern_data_by_name(pattern_name)
+        dialog =NewPattern(self,edit=True)
+        dialog.editPattern(data,images)
+        dialog.exec_()
+    
+    def editRequirement(self):
+        dialog = NewRequirement(self)
+        dialog.exec_()
+    
+    def editDomain(self):
+        data = self.patternRepository.get_domains()
+        dialog = NewDomain(self,edit=True)
+        dialog.editDomain(data= data)
+        dialog.exec_()
+    
+    def newRequirement(self):
+        dialog = NewRequirement(self)
+        dialog.ui_new(True)
+        dialog.exec_()
+    
+    def newDomain(self):
+        dialog = NewDomain(self,edit=False)
+        dialog.exec_()
+        
     def listPatterns(self):
-        list = self.patterRepository._list_directories()
+        list = self.patternRepository._list_directories()
         for i in list:
             self.lw_pattern.addItem(i)
                
@@ -42,7 +94,8 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
         
     def newPattern(self):
         #quiero que se abra el Qdialogo ui_newPattern.py
-        dialog = NewPattern(self)
+        dialog =NewPattern(self,edit=False)
+        dialog.exec_()
         
         # Window = QtWidgets.QMainWindow()
         # ui = Ui_NewPattern()
@@ -53,7 +106,7 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def instantiatePattern(self):
         #quiero que se abra el Qdialogo ui_fullScreen.py
-        data,images = self.patterRepository.get_pattern_data_by_name(self.lw_pattern.currentItem().text())
+        data,images = self.patternRepository.get_pattern_data_by_name(self.lw_pattern.currentItem().text())
         Window = QtWidgets.QMainWindow()
         ui = Ui_instantiateWindow(images=images,parent=data['Name'])
         ui.setupUi(Window)
@@ -105,10 +158,16 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
     def previewPattern(self):
         # Mostrar la información del patrón seleccionado
         pattern_name = self.lw_pattern.currentItem().text()
-        data, images = self.patterRepository.get_pattern_data_by_name(pattern_name)
+        data, images = self.patternRepository.get_pattern_data_by_name(pattern_name)
         self.lb_name.setText(data['Name'])
         self.lw_associatedDomains.clear()
-        for domain in data['Domains']:
+        dominios = []
+        dominios.append(data['Domains']['key'])
+        dominios.extend(data['Domains']['value'].values())
+        dominios = list(set(dominios))
+        dominios.remove(data['Domains']['key'])
+        self.lw_associatedDomains.addItem(data['Domains']['key'])
+        for domain in dominios:
             self.lw_associatedDomains.addItem(domain)
         self.lw_description.clear()
         self.lw_description.addItem(data['Description'])
@@ -134,7 +193,7 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
             label.setText(error_message)
 
     def searchPattern(self):
-        results = self.patterRepository.search_pattern_by_name(self.le_search.text())
+        results = self.patternRepository.search_pattern_by_name(self.le_search.text())
         self.lw_pattern.clear()
         for result in results:
             self.lw_pattern.addItem(result['Name'])

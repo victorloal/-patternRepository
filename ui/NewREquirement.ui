@@ -49,6 +49,59 @@
        </widget>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="pb_crearDominio_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Eliminar</string>
+          </property>
+          <property name="icon">
+           <iconset theme="remove"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pb_crearDominio_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Crear</string>
+          </property>
+          <property name="icon">
+           <iconset theme="add"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pb_crearDominio_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Editar</string>
+          </property>
+          <property name="icon">
+           <iconset theme="edit">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QListWidget" name="lw_dominios"/>
       </item>
       <item>
@@ -62,22 +115,14 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Eliminar</string>
-          </property>
-          <property name="icon">
-           <iconset theme="list-remove">
-            <normaloff>.</normaloff>.</iconset>
+           <string>Cancelar</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="pb_crearDominio">
           <property name="text">
-           <string>Crear nuevo</string>
-          </property>
-          <property name="icon">
-           <iconset theme="list-add">
-            <normaloff>.</normaloff>.</iconset>
+           <string>Guardar Cambios</string>
           </property>
          </widget>
         </item>
