@@ -78,7 +78,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.pb_save)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.verticalLayout_2.addLayout(self.verticalLayout)
-
+        
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
     

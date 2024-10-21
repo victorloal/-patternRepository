@@ -8,7 +8,7 @@ class Instanciacion(QFrame):
         super().__init__(parent)
         self.setFrameShape(QFrame.StyledPanel)  # Optional: Set the frame shape
         self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)  # Allow expanding
-
+        
         self.modifier = SvgTextModifier(svg_content)
         self.original_texts = self.modifier.get_texts()
 

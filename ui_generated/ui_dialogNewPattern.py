@@ -263,9 +263,10 @@ class Ui_NewPattern(object):
         self.pb_save.setIcon(icon)
         self.pb_save.setObjectName("pb_save")
         self.gridLayout.addWidget(self.pb_save, 9, 1, 1, 1)
-
+        
         self.retranslateUi(NewPattern)
         QtCore.QMetaObject.connectSlotsByName(NewPattern)
+        
 
     def retranslateUi(self, NewPattern):
         _translate = QtCore.QCoreApplication.translate

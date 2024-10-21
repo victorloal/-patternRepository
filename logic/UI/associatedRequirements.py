@@ -1,8 +1,9 @@
 from logic.pattern_repository import PatternRepository
-from ui_generated.ui_associatedRequirements import Ui_AssociatedRequirements
-from ui_generated.ui_customInputDialog import CustomInputDialog
-from ui_generated.ui_messageBoxManager import MessageBoxManager
-from PyQt5 import QtCore, QtGui, QtWidgets
+from logic.UI.ui_customInputDialog import CustomInputDialog
+from logic.UI.ui_messageBoxManager import MessageBoxManager
+from PyQt5 import QtWidgets
+
+from ui_generated.ui_dialogAssociatedRequirements import Ui_AssociatedRequirements
 
 class NewAssociatedRequirements(QtWidgets.QDialog, Ui_AssociatedRequirements):
     def __init__(self, parent=None, edit= False):
@@ -34,7 +35,7 @@ class NewAssociatedRequirements(QtWidgets.QDialog, Ui_AssociatedRequirements):
         self.result = []
         for i in range(self.lw_associatedRequirements.count()):
             self.result.append(self.lw_associatedRequirements.item(i).text())
-        self.AssociatedRequirements.accept()
+        self.accept()
         
     def get_result(self):
         # Return the selected domains and associated requirements
@@ -46,14 +47,15 @@ class NewAssociatedRequirements(QtWidgets.QDialog, Ui_AssociatedRequirements):
         self.lw_associatedRequirements.addItems(requirements)
     
     def listDomains(self):
+        self.cb_domains.clear()
         domains = self.pattern_repository.get_domains()
-        for dominio in domains["Domains"].keys():
+        for dominio in domains.keys():
             self.cb_domains.addItem(dominio)
             
     def listRequirements(self):
         self.lw_domains.clear()
         domains = self.pattern_repository.get_domains()
-        for requisito in domains["Domains"][self.cb_domains.currentText()]:
+        for requisito in domains[self.cb_domains.currentText()]:
             self.lw_domains.addItem(requisito)
             
         pass
@@ -62,10 +64,13 @@ class NewAssociatedRequirements(QtWidgets.QDialog, Ui_AssociatedRequirements):
         # Remove selected items from lw_domains
         selected_items = self.lw_domains.selectedItems()
         for item in selected_items:
-            result = self.menssageBoxManager.show_question_message(self.AssociatedRequirements, "Warning", "esta seguro de eliminar este requerimiento?","Eliminar","Cancelar")   
+            result = self.menssageBoxManager.show_question_message(self, "Warning", "esta seguro de eliminar este requerimiento?","Eliminar","Cancelar")   
             if result:
-                self.pattern_repository.delete_requirement(self.cb_domains.currentText(), item.text())
-                self.lw_domains.takeItem(self.lw_domains.row(item))
+                result, menssage = self.pattern_repository.delete_requirement(self.cb_domains.currentText(), item.text())
+                if  not result:
+                    self.menssageBoxManager.show_critical_message(self, "Error", "No es posible eliminar el requerimiento," + menssage)
+                else:
+                    self.lw_domains.takeItem(self.lw_domains.row(item))
     
     def create_new_requirement(self):
         # Show dialog to create new requirement

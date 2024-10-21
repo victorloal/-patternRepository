@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1424</width>
-    <height>480</height>
+    <height>531</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Repositorio de Patrones</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -170,6 +170,29 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="lb_associatedRequirements_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Roles del patron</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QListWidget" name="lw_roles">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item row="0" column="0">
@@ -225,24 +248,29 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pb_advancedSearch">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>Busqueda avanzada</string>
-          </property>
-          <property name="icon">
-           <iconset theme="system-search">
-            <normaloff>../../../.designer/interfaces</normaloff>../../../.designer/interfaces</iconset>
-          </property>
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QCheckBox" name="cb_nombre_2">
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_roles">
+            <property name="text">
+             <string>Roles</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cb_dominio">
+            <property name="text">
+             <string>Dominio</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QListWidget" name="lw_pattern">
@@ -291,7 +319,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>98</width>
+                 <width>66</width>
                  <height>35</height>
                 </rect>
                </property>
@@ -331,7 +359,7 @@
                  <x>0</x>
                  <y>0</y>
                  <width>536</width>
-                 <height>329</height>
+                 <height>380</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -363,7 +391,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>98</width>
+                 <width>66</width>
                  <height>35</height>
                 </rect>
                </property>
@@ -408,7 +436,7 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>98</width>
+                 <width>66</width>
                  <height>35</height>
                 </rect>
                </property>
@@ -483,7 +511,6 @@
     <addaction name="new_pattern"/>
     <addaction name="separator"/>
     <addaction name="new_domains"/>
-    <addaction name="new_Requirements"/>
    </widget>
    <widget class="QMenu" name="menuEditar">
     <property name="title">
@@ -491,25 +518,18 @@
     </property>
     <addaction name="edit_pattern"/>
     <addaction name="edit_domain"/>
-    <addaction name="edit_requirementsDomain"/>
    </widget>
-   <widget class="QMenu" name="menuConfiguracion">
+   <widget class="QMenu" name="menuEliminar">
     <property name="title">
-     <string>Configuracion</string>
+     <string>Eliminar</string>
     </property>
-    <widget class="QMenu" name="menuIdioma">
-     <property name="title">
-      <string>Idioma</string>
-     </property>
-     <addaction name="laguage_spanish"/>
-     <addaction name="laguage_english"/>
-    </widget>
-    <addaction name="menuIdioma"/>
+    <addaction name="delete_pattern"/>
+    <addaction name="delete_domain"/>
    </widget>
    <addaction name="menuHome"/>
    <addaction name="menuCrear"/>
    <addaction name="menuEditar"/>
-   <addaction name="menuConfiguracion"/>
+   <addaction name="menuEliminar"/>
   </widget>
   <action name="help_app">
    <property name="text">
@@ -586,6 +606,21 @@
     <string>Requisitos de Dominio</string>
    </property>
   </action>
+  <action name="delete_pattern">
+   <property name="text">
+    <string>Patron</string>
+   </property>
+  </action>
+  <action name="delete_domain">
+   <property name="text">
+    <string>Dominio</string>
+   </property>
+  </action>
+  <action name="actionUso">
+   <property name="text">
+    <string>Uso</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>pb_instantiate</tabstop>
@@ -594,7 +629,6 @@
   <tabstop>lw_associatedRequirements</tabstop>
   <tabstop>le_search</tabstop>
   <tabstop>pb_search</tabstop>
-  <tabstop>pb_advancedSearch</tabstop>
   <tabstop>lw_pattern</tabstop>
   <tabstop>tw_preview</tabstop>
   <tabstop>scrollArea_2</tabstop>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Instaciar patron</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -50,7 +50,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>513</width>
+               <width>721</width>
                <height>495</height>
               </rect>
              </property>
@@ -89,7 +89,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>513</width>
+               <width>721</width>
                <height>495</height>
               </rect>
              </property>
@@ -122,7 +122,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>513</width>
+               <width>721</width>
                <height>495</height>
               </rect>
              </property>
@@ -167,7 +167,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>513</width>
+               <width>721</width>
                <height>495</height>
               </rect>
              </property>
@@ -243,7 +243,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>306</width>
+          <width>98</width>
           <height>556</height>
          </rect>
         </property>

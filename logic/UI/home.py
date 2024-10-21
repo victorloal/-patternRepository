@@ -1,25 +1,35 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui, QtCore
+from logic.UI.instantiate import Instantiate
 from logic.UI.editRequirement import NewRequirement
 from logic.UI.newDomain import NewDomain
+from logic.UI.ui_markdownDialog import MarkdownDialog
+from logic.UI.search import Search
 from logic.UI.newPattern import NewPattern
+from logic.UI.ui_messageBoxManager import MessageBoxManager
 from logic.pattern_repository import PatternRepository
-from ui_generated.ui_fullScreen import Ui_instantiateWindow
-
-from ui_generated.ui_search import Ui_Dialog
 from ui_generated.ui_home import Ui_MainWindow
 
 class Home(QtWidgets.QMainWindow, Ui_MainWindow):
+    """
+    Main application window that manages the interaction with patterns and domains.
+    """
+
     def __init__(self):
+        """
+        Initializes the Home window and its components.
+        """
         super().__init__()
         self.setupUi(self)
         self.showMaximized()
         self.patternRepository = PatternRepository()
+        self.messageManager = MessageBoxManager()
         self.init_ui()
 
     def init_ui(self):
-        # Conectar señales y slots
+        """
+        Initializes UI components and connects signals to slots.
+        """
         self.pb_search.clicked.connect(self.searchPattern)
-        self.pb_advancedSearch.clicked.connect(self.advancedSearch)
         self.lw_pattern.itemClicked.connect(self.previewPattern)
         self.pb_fullScreen.clicked.connect(self.fullScreen)
         self.pb_instantiate.clicked.connect(self.instantiatePattern)
@@ -33,89 +43,135 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
         self.help_contribute.triggered.connect(self.helpContribute)
         self.help_pattern.triggered.connect(self.helpPattern)
         self.help_ropository.triggered.connect(self.helpRepository)
-        # Inicializar la lista de patrones
+        self.delete_pattern.triggered.connect(self.deletePattern)
+        self.delete_domain.triggered.connect(self.deleteDomain)
         self.listPatterns()
-        
-    
-    
+
+    def deleteDomain(self):
+        """
+        Opens a dialog to delete an existing domain.
+        """
+        data = self.patternRepository.get_domains()
+        dialog = NewDomain(self, edit=True)
+        dialog.deleteDomain(data=data)
+        dialog.exec_()
+
+    def deletePattern(self):
+        """
+        Deletes the selected pattern after confirmation.
+        """
+        if not self.lw_pattern.currentItem():
+            self.messageManager.show_critical_message(self, "Error", 'Seleccione un patrón para eliminar')
+            return
+        pattern_name = self.lw_pattern.currentItem().text()
+        message = self.messageManager.show_warning_message(self, "Eliminar patrón", f"¿Está seguro de eliminar el patrón {pattern_name}?")
+        if message == QtWidgets.QMessageBox.Ok:
+            self.patternRepository.delete_pattern(pattern_name)
+            self.listPatterns()
+
     def helpRepository(self):
-        pass
-    
+        dialog = MarkdownDialog("Donde encontrar los patrones")
+        dialog.exec_()
+
     def helpPattern(self):
-        pass
-    
+        dialog = MarkdownDialog("Como crear nuevo Patron")
+        dialog.exec_()
+
     def helpContribute(self):
-        pass
-    
+        dialog = MarkdownDialog("Como colaborar cone le proyecto")
+        dialog.exec_()
+
     def helpApp(self):
-        pass
-    
-    
+        dialog = MarkdownDialog("Informacion del programa")
+        dialog.exec_()
+
     def editPattern(self):
-        
+        """
+        Opens a dialog to edit the selected pattern.
+        """
+        if not self.lw_pattern.currentItem():
+            self.messageManager.show_critical_message(self, "Error", 'Seleccione un patrón para editar')
+            return
         pattern_name = self.lw_pattern.currentItem().text()
         data, images = self.patternRepository.get_pattern_data_by_name(pattern_name)
-        dialog =NewPattern(self,edit=True)
-        dialog.editPattern(data,images)
+        images = self.patternRepository.get_path_images_by_name(pattern_name)
+        dialog = NewPattern(self, edit=True)
+        dialog.editPattern(data, images)
         dialog.exec_()
-    
+
     def editRequirement(self):
+        """
+        Opens a dialog to edit requirements.
+        """
         dialog = NewRequirement(self)
         dialog.exec_()
-    
+
     def editDomain(self):
+        """
+        Opens a dialog to edit existing domains.
+        """
         data = self.patternRepository.get_domains()
-        dialog = NewDomain(self,edit=True)
-        dialog.editDomain(data= data)
+        dialog = NewDomain(self, edit=True)
+        dialog.editDomain(data=data)
         dialog.exec_()
-    
+
     def newRequirement(self):
+        """
+        Opens a dialog to create a new requirement.
+        """
         dialog = NewRequirement(self)
         dialog.ui_new(True)
         dialog.exec_()
-    
+
     def newDomain(self):
-        dialog = NewDomain(self,edit=False)
+        """
+        Opens a dialog to create a new domain.
+        """
+        dialog = NewDomain(self, edit=False)
         dialog.exec_()
-        
+
     def listPatterns(self):
-        list = self.patternRepository._list_directories()
-        for i in list:
-            self.lw_pattern.addItem(i)
-               
-    def advancedSearch(self):
-        #quiero que se abra el Qdialogo ui_search.py
-        Dialog = QtWidgets.QDialog()
-        ui = Ui_Dialog()
-        ui.setupUi(Dialog)
-        ui.retranslateUi(Dialog)
-        Dialog.show()
-        Dialog.exec_()
-        
+        """
+        Lists all patterns in the list widget.
+        """
+        self.lw_pattern.clear()
+        patterns = self.patternRepository._list_directories()
+        for pattern in patterns:
+            self.lw_pattern.addItem(pattern)
+
+
     def newPattern(self):
-        #quiero que se abra el Qdialogo ui_newPattern.py
-        dialog =NewPattern(self,edit=False)
-        dialog.exec_()
-        
-        # Window = QtWidgets.QMainWindow()
-        # ui = Ui_NewPattern()
-        # ui.setupUi(Window)
-        # ui.retranslateUi(Window)
-        # Window.show()
-        # Window.exec_()
+        """
+        Opens a dialog to create a new pattern.
+        """
+        dialog = NewPattern(self, edit=False)
+        if dialog.exec_() == QtWidgets.QDialog.Accepted:
+            self.listPatterns()
 
     def instantiatePattern(self):
-        #quiero que se abra el Qdialogo ui_fullScreen.py
-        data,images = self.patternRepository.get_pattern_data_by_name(self.lw_pattern.currentItem().text())
-        Window = QtWidgets.QMainWindow()
-        ui = Ui_instantiateWindow(images=images,parent=data['Name'])
-        ui.setupUi(Window)
-        ui.retranslateUi(Window)
-        Window.show()
-        Window.exec_()
+        """
+        Opens a dialog to instantiate the selected pattern.
+        """
+        if not self.lw_pattern.currentItem():
+            self.messageManager.show_critical_message(self, "Error", 'Seleccione un patrón para instanciar')
+            return
+        images = {}
+        data, images_dict = self.patternRepository.get_path_images_by_name(self.lw_pattern.currentItem().text())
+        images['template'] = images_dict["templateSVG"]
+        images["scopeModel"] = images_dict["scopeModelSVG"]
+        images["structureModel"] = images_dict["structureModelSVG"]
+        images["behaviorModel"] = images_dict["behaviorModelSVG"]
+        pattern = self.lw_pattern.currentItem().text()
+        dialog = Instantiate(images, pattern, self)
+        dialog.exec_()
 
     def fullScreen(self):
-        # Mostrar la imagen actual en pantalla completa
+        """
+        Displays the currently selected image in full screen.
+        """
+        if not self.lw_pattern.currentItem():
+            self.messageManager.show_critical_message(self, "Error", 'Seleccione un patrón para mostrar los modelos')
+            return
         visible_label = None
         if self.lb_template.isVisible():
             visible_label = self.lb_template
@@ -128,10 +184,14 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if visible_label:
             self.show_image_maximized(visible_label)
-        else:
-            print("No visible label found")
 
     def show_image_maximized(self, label):
+        """
+        Displays the specified image label in a maximized view.
+
+        Args:
+            label (QLabel): The label containing the image to display.
+        """
         pixmap = label.pixmap()
         if pixmap is None:
             print("No pixmap found in the visible label")
@@ -139,62 +199,102 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
 
         full_screen_widget = QtWidgets.QWidget()
         full_screen_widget.setWindowTitle("Maximized Image")
+
         layout = QtWidgets.QVBoxLayout(full_screen_widget)
-        scroll_area = QtWidgets.QScrollArea(full_screen_widget)
-        scroll_area.setWidgetResizable(True)
-        full_screen_label = QtWidgets.QLabel()
-        full_screen_label.setPixmap(pixmap)
-        scroll_area.setWidget(full_screen_label)
-        layout.addWidget(scroll_area)
+        self.graphics_view = QtWidgets.QGraphicsView()
+        layout.addWidget(self.graphics_view)
+
+        scene = QtWidgets.QGraphicsScene()
+        self.graphics_view.setScene(scene)
+        scene.addPixmap(pixmap)
+
+        toolbar = QtWidgets.QToolBar()
+        layout.addWidget(toolbar)
+
+        zoom_in_button = QtWidgets.QPushButton("Zoom In")
+        zoom_in_button.clicked.connect(self.zoom_in)
+        toolbar.addWidget(zoom_in_button)
+
+        zoom_out_button = QtWidgets.QPushButton("Zoom Out")
+        zoom_out_button.clicked.connect(self.zoom_out)
+        toolbar.addWidget(zoom_out_button)
+
+        self.graphics_view.setRenderHint(QtGui.QPainter.Antialiasing)
+        self.graphics_view.setRenderHint(QtGui.QPainter.SmoothPixmapTransform)
+        self.graphics_view.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.graphics_view.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+
         full_screen_widget.showMaximized()
         self.full_screen_widget = full_screen_widget
-        full_screen_widget.mouseDoubleClickEvent = self.close_maximized_widget
+        self.graphics_view.fitInView(scene.sceneRect(), QtCore.Qt.KeepAspectRatio)
 
-    def close_maximized_widget(self, event):
-        if self.full_screen_widget:
-            self.full_screen_widget.close()
-            self.full_screen_widget = None
+    def zoom_in(self):
+        """
+        Zooms in on the displayed image.
+        """
+        self.graphics_view.scale(1.2, 1.2)
+
+    def zoom_out(self):
+        """
+        Zooms out of the displayed image.
+        """
+        self.graphics_view.scale(1 / 1.2, 1 / 1.2)
 
     def previewPattern(self):
-        # Mostrar la información del patrón seleccionado
+        """
+        Displays details of the selected pattern.
+        """
         pattern_name = self.lw_pattern.currentItem().text()
-        data, images = self.patternRepository.get_pattern_data_by_name(pattern_name)
+        data, images = self.patternRepository.get_path_images_by_name(pattern_name)
         self.lb_name.setText(data['Name'])
         self.lw_associatedDomains.clear()
-        dominios = []
-        dominios.append(data['Domains']['key'])
-        dominios.extend(data['Domains']['value'].values())
-        dominios = list(set(dominios))
-        dominios.remove(data['Domains']['key'])
+        domains = [data['Domains']['key']] + list(data['Domains']['value'].values())
+        domains = list(set(domains))
+        domains.remove(data['Domains']['key'])
         self.lw_associatedDomains.addItem(data['Domains']['key'])
-        for domain in dominios:
+        for domain in domains:
             self.lw_associatedDomains.addItem(domain)
         self.lw_description.clear()
         self.lw_description.addItem(data['Description'])
         self.lw_knownUses.clear()
-        for knownUse in data['Uses']:
-            self.lw_knownUses.addItem(knownUse)
+        for known_use in data['Uses']:
+            self.lw_knownUses.addItem(known_use)
         self.lw_relatedPatterns.clear()
-        for relatedPattern in data['RelatedPatterns']:
-            self.lw_relatedPatterns.addItem(relatedPattern)
+        for related_pattern in data['RelatedPatterns']:
+            self.lw_relatedPatterns.addItem(related_pattern)
         self.lw_associatedRequirements.clear()
-        for associatedRequirement in data['Requirements']:
-            self.lw_associatedRequirements.addItem(associatedRequirement)
-
-        self.set_image(self.lb_template, images['template'], "No se encontró la imagen")
-        self.set_image(self.lb_scope, images['scopeModel'], "No se encontró la imagen")
-        self.set_image(self.lb_structure, images['structureModel'], "No se encontró la imagen")
-        self.set_image(self.lb_behavior, images['behaviorModel'], "No se encontró la imagen")
+        for associated_requirement in data['Domains']["value"].keys():
+            self.lw_associatedRequirements.addItem(associated_requirement)
+        for roles in data['Rol']:
+            self.lw_roles.addItem(roles)
+        
+        self.set_image(self.lb_template, images['templateSVG'], "No se encontró la imagen")
+        self.set_image(self.lb_scope, images['scopeModelSVG'], "No se encontró la imagen")
+        self.set_image(self.lb_structure, images['structureModelSVG'], "No se encontró la imagen")
+        self.set_image(self.lb_behavior, images['behaviorModelSVG'], "No se encontró la imagen")
 
     def set_image(self, label, image_path, error_message):
+        """
+        Sets the specified image in the given label or displays an error message.
+
+        Args:
+            label (QLabel): The label to display the image.
+            image_path (str): The path to the image.
+            error_message (str): The message to display if the image cannot be loaded.
+        """
         if image_path:
             label.setPixmap(image_path)
         else:
             label.setText(error_message)
 
     def searchPattern(self):
-        results = self.patternRepository.search_pattern_by_name(self.le_search.text())
-        self.lw_pattern.clear()
-        for result in results:
-            self.lw_pattern.addItem(result['Name'])
-            
+        """
+        Searches for patterns by name based on user input.
+        """
+        if not self.cb_nombre_2.isChecked() and not self.cb_dominio.isChecked() and not self.cb_roles.isChecked():
+            results = self.patternRepository.search_pattern_by_name(self.le_search.text())
+            self.lw_pattern.clear()
+            for result in results:
+                self.lw_pattern.addItem(result['Name'])
+        else:
+            results = self.patternRepository.search(self.le_search.text(), self.cb_nombre_2.isChecked(), self.cb_roles.isChecked(), self.cb_dominio.isChecked())

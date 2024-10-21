@@ -23,7 +23,7 @@
    <enum>Qt::ActionsContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Nuevo Patron</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>

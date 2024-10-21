@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '../ui/Usos Conosidos.ui'
+# Form implementation generated from reading ui file '../ui/Dialog_KnowUses.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -9,10 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-from logic.pattern_repository import PatternRepository
-from ui_generated.ui_customInputDialog import CustomInputDialog
-from ui_generated.ui_messageBoxManager import MessageBoxManager
 
 
 class Ui_KnowUses(object):
@@ -82,59 +78,6 @@ class Ui_KnowUses(object):
 
         self.retranslateUi(KnowUses)
         QtCore.QMetaObject.connectSlotsByName(KnowUses)
-        #================================================================
-        self.KnowUses = KnowUses
-        self.patternRepository = PatternRepository()
-        self.menssageManager = MessageBoxManager()
-        self.listUses()
-        self.pb_addUse.clicked.connect(self.addUse)
-        self.pb_removeUse.clicked.connect(self.removeUse)
-        self.pb_cancel.clicked.connect(KnowUses.close)
-        self.pb_save.clicked.connect(self.save)
-        
-    def setUses(self,uses):
-        if uses:
-            for use in uses:
-                self.lw_uses.addItem(use)
-                
-    def getUses(self):
-        uses = []
-        for i in range(self.lw_uses.count()):
-            uses.append(self.lw_uses.item(i).text())
-        return uses
-            
-    def save(self):
-        uses = []
-        for i in range(self.lw_uses.count()):
-            uses.append(self.lw_uses.item(i).text())
-            
-        if self.valid():
-            self.KnowUses.accept()
-        
-    def valid(self):
-        if self.lw_uses.count() == 0:
-            #QtWidgets.QMessageBox.critical(self.KnowUses, 'Error', 'Debe ingresar al menos un uso')
-            self.lw_uses.setStyleSheet("border: 1px solid red;")
-            self.menssageManager.show_critical_message(self.KnowUses, 'Error', 'Debe ingresar al menos un uso')
-            return False
-        return True
-    
-    def listUses(self):
-        uses = self.patternRepository.get_knowUses()
-        for use in uses["Uses"].keys():
-                self.cb_uses.addItem(use)
-            
-        
-    def addUse(self):
-        for i in range(self.lw_uses.count()):
-            if self.cb_uses.currentText() == self.lw_uses.item(i).text():
-                self.menssageManager.show_info_message(self.KnowUses, 'Info', 'El uso ya se encuentra en la lista')
-                return
-        self.lw_uses.addItem(self.cb_uses.currentText())
-
-    def removeUse(self):
-        self.lw_uses.takeItem(self.lw_uses.currentRow())
-        
 
     def retranslateUi(self, KnowUses):
         _translate = QtCore.QCoreApplication.translate

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '../ui/Nuevo dominio.ui'
+# Form implementation generated from reading ui file 'Dialog_NewDomain.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -56,6 +56,16 @@ class Ui_NewDomain(object):
         self.cb_requirements.setFrame(True)
         self.cb_requirements.setObjectName("cb_requirements")
         self.horizontalLayout.addWidget(self.cb_requirements)
+        self.pb_edit = QtWidgets.QPushButton(NewDomain)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pb_edit.sizePolicy().hasHeightForWidth())
+        self.pb_edit.setSizePolicy(sizePolicy)
+        icon = QtGui.QIcon.fromTheme("edit")
+        self.pb_edit.setIcon(icon)
+        self.pb_edit.setObjectName("pb_edit")
+        self.horizontalLayout.addWidget(self.pb_edit)
         self.pb_add = QtWidgets.QPushButton(NewDomain)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -71,6 +81,11 @@ class Ui_NewDomain(object):
         self.lw_requirements.setEnabled(True)
         self.lw_requirements.setObjectName("lw_requirements")
         self.verticalLayout.addWidget(self.lw_requirements)
+        self.pb_deleteDomain = QtWidgets.QPushButton(NewDomain)
+        icon = QtGui.QIcon.fromTheme("list-remove")
+        self.pb_deleteDomain.setIcon(icon)
+        self.pb_deleteDomain.setObjectName("pb_deleteDomain")
+        self.verticalLayout.addWidget(self.pb_deleteDomain)
         self.pb_deleteRequirements = QtWidgets.QPushButton(NewDomain)
         icon = QtGui.QIcon.fromTheme("list-remove")
         self.pb_deleteRequirements.setIcon(icon)
@@ -92,8 +107,6 @@ class Ui_NewDomain(object):
 
         self.retranslateUi(NewDomain)
         QtCore.QMetaObject.connectSlotsByName(NewDomain)
-        
-        
 
     def retranslateUi(self, NewDomain):
         _translate = QtCore.QCoreApplication.translate
@@ -103,7 +116,19 @@ class Ui_NewDomain(object):
         self.lb_requisitos.setText(_translate("NewDomain", "Requisitos"))
         self.cb_requirements.setCurrentText(_translate("NewDomain", "Nuevo Requisito"))
         self.cb_requirements.setPlaceholderText(_translate("NewDomain", "Nuevo requisito"))
+        self.pb_edit.setText(_translate("NewDomain", "editar"))
         self.pb_add.setText(_translate("NewDomain", "Adicionar"))
+        self.pb_deleteDomain.setText(_translate("NewDomain", "Eliminar Dominio"))
         self.pb_deleteRequirements.setText(_translate("NewDomain", "Eliminar Requisito"))
         self.pb_cancel.setText(_translate("NewDomain", "Cancelar"))
         self.pb_save.setText(_translate("NewDomain", "Guardar"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    NewDomain = QtWidgets.QDialog()
+    ui = Ui_NewDomain()
+    ui.setupUi(NewDomain)
+    NewDomain.show()
+    sys.exit(app.exec_())

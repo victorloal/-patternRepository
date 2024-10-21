@@ -30,8 +30,8 @@ class MessageBoxManager:
         msg_box.setIcon(QtWidgets.QMessageBox.Warning)
         msg_box.setWindowTitle(title)
         msg_box.setText(message)
-        msg_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        msg_box.exec_()
+        msg_box.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+        return msg_box.exec_()
 
     @staticmethod
     def show_critical_message(parent, title, message):

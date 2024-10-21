@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '../ui/Dialogo_buscar.ui'
+# Form implementation generated from reading ui file '../ui/Dialog_Search.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -11,18 +11,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(414, 322)
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+class Ui_Search(object):
+    def setupUi(self, Search):
+        Search.setObjectName("Search")
+        Search.resize(414, 322)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Search)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.le_datos = QtWidgets.QLineEdit(Dialog)
+        self.le_datos = QtWidgets.QLineEdit(Search)
         self.le_datos.setObjectName("le_datos")
         self.horizontalLayout.addWidget(self.le_datos)
-        self.pb_buscar = QtWidgets.QPushButton(Dialog)
+        self.pb_buscar = QtWidgets.QPushButton(Search)
         icon = QtGui.QIcon.fromTheme("system-search")
         self.pb_buscar.setIcon(icon)
         self.pb_buscar.setFlat(False)
@@ -31,20 +31,20 @@ class Ui_Dialog(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.lb_criterios = QtWidgets.QLabel(Dialog)
+        self.lb_criterios = QtWidgets.QLabel(Search)
         self.lb_criterios.setObjectName("lb_criterios")
         self.horizontalLayout_2.addWidget(self.lb_criterios)
-        self.cb_nombre = QtWidgets.QCheckBox(Dialog)
+        self.cb_nombre = QtWidgets.QCheckBox(Search)
         self.cb_nombre.setObjectName("cb_nombre")
         self.horizontalLayout_2.addWidget(self.cb_nombre)
-        self.cb_roles = QtWidgets.QCheckBox(Dialog)
+        self.cb_roles = QtWidgets.QCheckBox(Search)
         self.cb_roles.setObjectName("cb_roles")
         self.horizontalLayout_2.addWidget(self.cb_roles)
-        self.cb_dominio = QtWidgets.QCheckBox(Dialog)
+        self.cb_dominio = QtWidgets.QCheckBox(Search)
         self.cb_dominio.setObjectName("cb_dominio")
         self.horizontalLayout_2.addWidget(self.cb_dominio)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
-        self.tw_listaPatrones = QtWidgets.QTableWidget(Dialog)
+        self.tw_listaPatrones = QtWidgets.QTableWidget(Search)
         self.tw_listaPatrones.setTabletTracking(False)
         self.tw_listaPatrones.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.tw_listaPatrones.setAutoFillBackground(False)
@@ -80,30 +80,30 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.tw_listaPatrones)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.pb_crearPatron = QtWidgets.QPushButton(Dialog)
+        self.pb_crearPatron = QtWidgets.QPushButton(Search)
         self.pb_crearPatron.setObjectName("pb_crearPatron")
         self.horizontalLayout_3.addWidget(self.pb_crearPatron)
-        self.pb_verPatron = QtWidgets.QPushButton(Dialog)
+        self.pb_verPatron = QtWidgets.QPushButton(Search)
         self.pb_verPatron.setObjectName("pb_verPatron")
         self.horizontalLayout_3.addWidget(self.pb_verPatron)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(Search)
+        QtCore.QMetaObject.connectSlotsByName(Search)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, Search):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.le_datos.setPlaceholderText(_translate("Dialog", "Datos del patron"))
-        self.pb_buscar.setText(_translate("Dialog", "Buscar"))
-        self.lb_criterios.setText(_translate("Dialog", "Criterios de busqueda"))
-        self.cb_nombre.setText(_translate("Dialog", "Nombre"))
-        self.cb_roles.setText(_translate("Dialog", "Roles"))
-        self.cb_dominio.setText(_translate("Dialog", "Dominio"))
+        Search.setWindowTitle(_translate("Search", "Dialog"))
+        self.le_datos.setPlaceholderText(_translate("Search", "Datos del patron"))
+        self.pb_buscar.setText(_translate("Search", "Buscar"))
+        self.lb_criterios.setText(_translate("Search", "Criterios de busqueda"))
+        self.cb_nombre.setText(_translate("Search", "Nombre"))
+        self.cb_roles.setText(_translate("Search", "Roles"))
+        self.cb_dominio.setText(_translate("Search", "Dominio"))
         self.tw_listaPatrones.setSortingEnabled(False)
         item = self.tw_listaPatrones.horizontalHeaderItem(0)
-        item.setText(_translate("Dialog", "Nombre"))
+        item.setText(_translate("Search", "Nombre"))
         item = self.tw_listaPatrones.horizontalHeaderItem(1)
-        item.setText(_translate("Dialog", "Descripción"))
-        self.pb_crearPatron.setText(_translate("Dialog", "Cancelar"))
-        self.pb_verPatron.setText(_translate("Dialog", "Aceptar"))
+        item.setText(_translate("Search", "Descripción"))
+        self.pb_crearPatron.setText(_translate("Search", "Cancelar"))
+        self.pb_verPatron.setText(_translate("Search", "Aceptar"))
