@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_InstantiatePatterns(object):
     def setupUi(self, InstantiatePatterns):
         InstantiatePatterns.setObjectName("InstantiatePatterns")
-        InstantiatePatterns.resize(753, 300)
+        InstantiatePatterns.resize(1700, 400)
         self.horizontalLayout = QtWidgets.QHBoxLayout(InstantiatePatterns)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.verticalLayout_12 = QtWidgets.QVBoxLayout()

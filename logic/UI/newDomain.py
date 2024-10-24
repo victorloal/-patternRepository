@@ -138,7 +138,9 @@ class NewDomain(QtWidgets.QDialog, Ui_NewDomain):
         dominio= self.cb_domains.currentText()
         if dominio == "":
             dominio = self.le_nameDomain.text()
-        result, menssage = self.patternRepository.delete_requirement(dominio, self.lw_requirements.currentItem().text())
+        result = self.messageManager.show_question_message(self, "Warning", "Esta seguro de eliminar este requerimiento?","Eliminar","Cancelar")
+        if not result:
+            result, menssage = self.patternRepository.delete_requirement(dominio, self.lw_requirements.currentItem().text())
         if  not result:
             self.messageManager.show_critical_message(self, "Error", "No es posible eliminar el requerimiento," + menssage)
         else:

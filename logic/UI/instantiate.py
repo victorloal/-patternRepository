@@ -27,6 +27,8 @@ class Instantiate(QtWidgets.QDialog, Ui_InstantiatePatterns):
         pattern_data, self.images_path = self.patternRepository.get_path_images_by_name(pattern)
         self.init_ui(pattern)
         
+        
+        
     def init_ui(self,pattern):
         """
         Initializes the UI elements by setting images and connecting signals.
@@ -35,9 +37,11 @@ class Instantiate(QtWidgets.QDialog, Ui_InstantiatePatterns):
         self.set_image(self.lb_scope_2, self.images['scopeModel'], "Error al cargar la imagen")
         self.set_image(self.lb_structure_2, self.images['structureModel'], "Error al cargar la imagen")
         self.set_image(self.lb_behavior_2, self.images['behaviorModel'], "Error al cargar la imagen")
-        
         pattern_data,self.images_path = self.patternRepository.get_pattern_data_by_name(pattern)
         self.tw_preview_2.currentChanged.connect(lambda index: self.change_data(self.images_path))
+        QtCore.QTimer.singleShot(0, lambda: self.tw_preview_2.setCurrentIndex(0))
+        
+        
 
     def change_data(self, images):
         """
@@ -50,8 +54,6 @@ class Instantiate(QtWidgets.QDialog, Ui_InstantiatePatterns):
         current_index = self.tw_preview_2.currentIndex()
         
         if current_index == 0:  # Template tab
-            print("Tipo de images:", type(images))
-            print("Contenido de images:", images)
             svg_content = images['templateSVG']
         elif current_index == 1:  # Scope tab
             svg_content = images['scopeModelSVG']

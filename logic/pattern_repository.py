@@ -309,17 +309,18 @@ class PatternRepository:
         # Buscar por roles
         if search_by_roles:
             roles = self.get_roles()  
-            if any(search_text in role.lower() for role in list(roles.keys())):  
-                match += 1
-                print("Match found in roles")
+            for role in list(roles.keys()):
+                if search_text == role.lower():  
+                    if pattern_data["Name"].lower() in roles[role]:
+                        match += 1
 
         # Buscar por dominio
         if search_by_dominio:
             domains = self.get_domainsWhitPatterns()  
-            if any(search_text in domain.lower() for domain in list(domains.keys())):  
-                match += 1
-                print("Match found in domains")
-
+            for domain in list(domains.keys()):
+                if search_text == domain.lower():  
+                    if pattern_data["Name"].lower() in domains[domain]:
+                        match += 1
         return match
         
     def get_domains(self):
@@ -478,16 +479,18 @@ class PatternRepository:
             requirement_delete (str): The requirement to delete.
         """
         data = self._read_json_file(f"{self.repo_path}/RepositoryData.json")
-        for pattern in data["DomainsWithPatterns"][domain_delete]:
-            data_file = self._get_pattern_data_file_path(pattern)
-            pattern_data = self._read_json_file(data_file)
-            if requirement_delete in pattern_data["Domains"]["value"].keys():
-                return False, "Requerimiento asociado al patron: "+pattern
-        if domain_delete in data["Domains"]:
+        if domain_delete in data["DomainsWithPatterns"].keys():
+            for pattern in data["DomainsWithPatterns"][domain_delete]:
+                data_file = self._get_pattern_data_file_path(pattern)
+                pattern_data = self._read_json_file(data_file)
+                if requirement_delete in pattern_data["Domains"]["value"].keys():
+                    return False, "Requerimiento asociado al patron: "+pattern
+        if domain_delete in data["Domains"].keys():
             requirements = data["Domains"][domain_delete]
             if requirement_delete in requirements:
                 requirements.remove(requirement_delete)
         self._write_json_file(f"{self.repo_path}/RepositoryData.json", data)
+        return True, "Requerimiento eliminado exitosamente."
             
     def append_requirement(self, domain, requirement):
         """

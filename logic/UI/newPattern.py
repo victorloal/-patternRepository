@@ -48,7 +48,6 @@ class NewPattern(QtWidgets.QDialog, Ui_NewPattern):
         self.domains = data["Domains"]["value"]
         self.requirements = data["Domains"]["value"].keys()
         
-        
         self.lb_behaviorSvg.setText(images["behaviorModelSVG"])
         self.lb_scopeSvg.setText(images["scopeModelSVG"])
         self.lb_structurSvg.setText(images["structureModelSVG"])

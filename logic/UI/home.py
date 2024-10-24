@@ -94,10 +94,10 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
             return
         pattern_name = self.lw_pattern.currentItem().text()
         data, images = self.patternRepository.get_pattern_data_by_name(pattern_name)
-        images = self.patternRepository.get_path_images_by_name(pattern_name)
         dialog = NewPattern(self, edit=True)
         dialog.editPattern(data, images)
         dialog.exec_()
+        self.listPatterns()
 
     def editRequirement(self):
         """
@@ -248,6 +248,13 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
         data, images = self.patternRepository.get_path_images_by_name(pattern_name)
         self.lb_name.setText(data['Name'])
         self.lw_associatedDomains.clear()
+        self.lw_roles.clear()
+        self.lw_associatedDomains.clear()
+        self.lw_description.clear()
+        self.lw_knownUses.clear()
+        self.lw_relatedPatterns.clear()
+        self.lw_associatedRequirements.clear()
+        
         domains = [data['Domains']['key']] + list(data['Domains']['value'].values())
         domains = list(set(domains))
         domains.remove(data['Domains']['key'])
@@ -293,8 +300,10 @@ class Home(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         if not self.cb_nombre_2.isChecked() and not self.cb_dominio.isChecked() and not self.cb_roles.isChecked():
             results = self.patternRepository.search_pattern_by_name(self.le_search.text())
-            self.lw_pattern.clear()
-            for result in results:
-                self.lw_pattern.addItem(result['Name'])
         else:
             results = self.patternRepository.search(self.le_search.text(), self.cb_nombre_2.isChecked(), self.cb_roles.isChecked(), self.cb_dominio.isChecked())
+        self.lw_pattern.clear()
+        for result in results:
+            self.lw_pattern.addItem(result['Name'])
+        print(results)
+            
